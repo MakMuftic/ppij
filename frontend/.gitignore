@@ -26,6 +26,8 @@ hs_err_pid*
 
 .idea
 
+.iml
+
 # User-specific stuff:
 .idea/**/tasks.xml
 .idea/dictionaries
