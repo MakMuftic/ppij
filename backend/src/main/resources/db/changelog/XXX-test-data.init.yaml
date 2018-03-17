@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-roles
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          encoding: UTF-8
+          file: db/data/roles.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: roles
+  - changeSet:
+      id: insert-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          encoding: UTF-8
+          file: db/data/sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: sports
+  - changeSet:
+      id: insert-pictures
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: picture_path
+              type: string
+          - column:
+              name: alternate
+              type: string
+          encoding: UTF-8
+          file: db/data/pictures.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: pictures
+  - changeSet:
+      id: insert-users
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: user_name
+              type: string
+          - column:
+              name: first_name
+              type: string
+          - column:
+              name: last_name
+              type: string
+          - column:
+              name: email
+              type: string
+          - column:
+              name: phone_number
+              type: string
+          - column:
+              name: about_me_description
+              type: string
+          - column:
+              name: picture_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/users.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: users
+  - changeSet:
+      id: insert-user-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: user_id
+              type: numeric
+          - column:
+              name: sport_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/user-sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: user_sports

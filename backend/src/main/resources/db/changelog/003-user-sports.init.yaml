@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user-sports-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: USER_SPORTS
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sport_id
+                  type: bigint
+                  constraints:
+                    nullable: true

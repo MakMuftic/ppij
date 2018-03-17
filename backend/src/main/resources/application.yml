@@ -1,0 +1,32 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    hibernate.ddl-auto: validate
+  datasource:
+    url: ""
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+    tomcat:
+      test-on-borrow: true
+      validation-query: SELECT 1
+      validation-query-timeout: 10
+      test-while-idle: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 240
+
+server:
+  port: 8090
+
+liquibase:
+  default-schema: public
+  change-log: classpath:db/liquibase-schema-changelog.yaml
+
+logging:
+  level:
+    hr.altima.internal: DEBUG
+    root: INFO
+  file: logs/360-survey.log
+
+
+
