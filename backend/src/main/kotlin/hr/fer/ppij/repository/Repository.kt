@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepository : PagingAndSortingRepository<User, Long>
-
 @Repository
 interface RoleRepository : PagingAndSortingRepository<Role, Long>
 

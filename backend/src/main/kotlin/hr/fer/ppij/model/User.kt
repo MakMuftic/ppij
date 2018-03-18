@@ -1,6 +1,6 @@
 package hr.fer.ppij.model
 
-import org.hibernate.annotations.Type
+import hr.fer.ppij.dto.BasicUserDto
 import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
 
@@ -25,4 +25,12 @@ data class User(
         @ManyToOne
         @JoinColumn(name = "picture_id")
         var picture: Picture? = null
-)
+) {
+    fun toDto(): BasicUserDto = BasicUserDto(
+            id,
+            userName,
+            firstName ?: "",
+            lastName ?: "",
+            email
+    )
+}

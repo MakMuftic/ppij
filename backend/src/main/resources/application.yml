@@ -16,7 +16,7 @@ spring:
       remove-abandoned-timeout: 240
 
 server:
-  port: 8090
+  port: 8080
 
 liquibase:
   default-schema: public
