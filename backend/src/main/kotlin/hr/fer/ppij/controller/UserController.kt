@@ -16,15 +16,24 @@ class UserController(
     fun getAllUsersBasicInfo() = userRepository.findAll().map { it.toDto() }
 
     @GetMapping("/users/basic/{userId}")
-    fun getUserBasicInfoById(@PathVariable userId: Long) = userRepository.findOne(userId).toDto()
-
+    fun getUserBasicInfoById(@PathVariable userId: Long): ResponseEntity<*> {
+        userRepository.findOne(userId)?.let {
+            return ResponseEntity.ok(it.toDto())
+        }
+        return ResponseEntity.notFound().build()
+    }
     /* User endpoints */
 
     @GetMapping("/users")
     fun getAllUsersInfo(): MutableIterable<User> = userRepository.findAll()
 
     @GetMapping("/users/{userId}")
-    fun getFullUserById(@PathVariable userId: Long): User? = userRepository.findOne(userId)
+    fun getFullUserById(@PathVariable userId: Long): ResponseEntity<*> {
+        userRepository.findOne(userId)?.let {
+            return ResponseEntity.ok(it)
+        }
+        return ResponseEntity.notFound().build()
+    }
 
     @PostMapping("/users")
     fun saveUser(@RequestBody user: User): User = userRepository.save(user)
