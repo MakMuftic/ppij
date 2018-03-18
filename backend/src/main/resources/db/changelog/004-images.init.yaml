@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-pictures-table
+      id: create-images-table
       author: mace
       changes:
         - createTable:
-            tableName: PICTURES
+            tableName: IMAGES
             columns:
               - column:
                   name: id
@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: picture_path
+                  name: image_name
                   type: varchar(200)
                   constraints:
                     nullable: false

@@ -29,4 +29,8 @@ logging:
   file: logs/360-survey.log
 
 
+app:
+  upload-route: upload-dir
+
+
 

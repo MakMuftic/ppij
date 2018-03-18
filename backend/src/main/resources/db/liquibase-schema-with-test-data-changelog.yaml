@@ -9,7 +9,7 @@ databaseChangeLog:
       file: db/changelog/003-user-sports.init.yaml
 
   - include:
-      file: db/changelog/004-pictures.init.yaml
+      file: db/changelog/004-images.init.yaml
 
   - include:
       file: db/changelog/005-roles.init.yaml

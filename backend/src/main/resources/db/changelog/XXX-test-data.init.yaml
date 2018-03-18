@@ -38,7 +38,7 @@ databaseChangeLog:
           separator: ","
           tableName: sports
   - changeSet:
-      id: insert-pictures
+      id: insert-images
       author: mace
       changes:
       - loadData:
@@ -48,17 +48,17 @@ databaseChangeLog:
               name: id
               type: numeric
           - column:
-              name: picture_path
+              name: image_path
               type: string
           - column:
               name: alternate
               type: string
           encoding: UTF-8
-          file: db/data/pictures.csv
+          file: db/data/images.csv
           quotchar: ""
           schemaName: public
           separator: ","
-          tableName: pictures
+          tableName: images
   - changeSet:
       id: insert-users
       author: mace
@@ -88,7 +88,7 @@ databaseChangeLog:
               name: about_me_description
               type: string
           - column:
-              name: picture_id
+              name: image_id
               type: numeric
           encoding: UTF-8
           file: db/data/users.csv

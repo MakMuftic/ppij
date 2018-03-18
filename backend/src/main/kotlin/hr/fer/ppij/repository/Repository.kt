@@ -1,6 +1,6 @@
 package hr.fer.ppij.repository
 
-import hr.fer.ppij.model.Picture
+import hr.fer.ppij.model.Image
 import hr.fer.ppij.model.Role
 import hr.fer.ppij.model.Sport
 import hr.fer.ppij.model.User
@@ -16,4 +16,4 @@ interface RoleRepository : PagingAndSortingRepository<Role, Long>
 interface SportRepository : PagingAndSortingRepository<Sport, Long>
 
 @Repository
-interface PictureRepository : PagingAndSortingRepository<Picture, Long>
+interface ImageRepository : PagingAndSortingRepository<Image, Long>

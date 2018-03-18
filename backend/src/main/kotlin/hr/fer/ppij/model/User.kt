@@ -23,8 +23,8 @@ data class User(
         var sports: List<Sport> = mutableListOf(),
 
         @ManyToOne
-        @JoinColumn(name = "picture_id")
-        var picture: Picture? = null
+        @JoinColumn(name = "image_id")
+        var image: Image? = null
 ) {
     fun toDto(): BasicUserDto = BasicUserDto(
             id,

@@ -7,4 +7,5 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix = "app")
 class ApplicationConfig {
     // General application properties
+    var uploadRoute: String? = ""
 }
