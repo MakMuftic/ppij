@@ -181,3 +181,22 @@ databaseChangeLog:
           schemaName: public
           separator: ","
           tableName: venue_sports
+  - changeSet:
+      id: insert-favourites
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: user_id
+              type: numeric
+          - column:
+              name: venue_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/favourites.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: favourites

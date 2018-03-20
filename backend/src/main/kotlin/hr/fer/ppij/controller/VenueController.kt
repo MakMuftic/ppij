@@ -2,13 +2,17 @@ package hr.fer.ppij.controller
 
 import hr.fer.ppij.ApiController
 import hr.fer.ppij.model.Venue
+import hr.fer.ppij.repository.FavouriteRepository
+import hr.fer.ppij.repository.UserRepository
 import hr.fer.ppij.repository.VenueRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @ApiController
 class VenueController(
-        private val venueRepository: VenueRepository
+        private val venueRepository: VenueRepository,
+        private val favouriteRepository: FavouriteRepository,
+        private val userRepository: UserRepository
 ) {
     @GetMapping("/venues")
     fun getAllVenues(): Iterable<Venue> = venueRepository.findAll()
@@ -47,5 +51,19 @@ class VenueController(
             return ResponseEntity.ok().build()
         }
         return ResponseEntity.notFound().build()
+    }
+
+    /* Favourite endpoints */
+    
+    @GetMapping("/venues/{venueId}/favourites")
+    fun getAllUsersHavingInFavouriteThisVenue(@PathVariable venueId: Long): ResponseEntity<*> {
+        // check if venue exists
+        if (!venueRepository.exists(venueId))
+            return ResponseEntity.notFound().build()
+        // fetch all users having venue in favourites
+        return ResponseEntity.ok(favouriteRepository
+                .findByVenueId(venueId)
+                .map { userRepository.findOne(it.userId).toDto() }
+        )
     }
 }

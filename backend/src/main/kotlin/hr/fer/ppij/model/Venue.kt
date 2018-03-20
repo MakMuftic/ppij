@@ -1,5 +1,6 @@
 package hr.fer.ppij.model
 
+import hr.fer.ppij.dto.BasicVenueDto
 import javax.persistence.*
 
 @Entity
@@ -25,7 +26,14 @@ data class Venue(
                 joinColumns = [(JoinColumn(name = "venue_id", referencedColumnName = "id"))],
                 inverseJoinColumns = [(JoinColumn(name = "image_id", referencedColumnName = "id"))])
         var images: List<Image> = mutableListOf()
-)
+) {
+    fun toDto(): BasicVenueDto = BasicVenueDto(
+            id!!,
+            name,
+            sports,
+            type
+    )
+}
 
 enum class VenueType {
     // TODO

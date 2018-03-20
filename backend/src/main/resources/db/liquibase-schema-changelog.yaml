@@ -24,4 +24,7 @@ databaseChangeLog:
       file: db/changelog/008-venue-sports.init.yaml
 
   - include:
+      file: db/changelog/009-favourites.init.yaml
+
+  - include:
       file: db/changelog/C01-foreign-keys.init.yaml

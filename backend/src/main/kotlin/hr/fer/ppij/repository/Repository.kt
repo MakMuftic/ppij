@@ -18,3 +18,9 @@ interface ImageRepository : PagingAndSortingRepository<Image, Long>
 
 @Repository
 interface VenueRepository : PagingAndSortingRepository<Venue, Long>
+
+@Repository
+interface FavouriteRepository : PagingAndSortingRepository<Favourite, Long> {
+    fun findByUserId(userId:Long): List<Favourite>
+    fun findByVenueId(venueId:Long): List<Favourite>
+}
