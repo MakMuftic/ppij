@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-venue-images-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: VENUE_IMAGES
+            columns:
+              - column:
+                  name: venue_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: image_id
+                  type: bigint
+                  constraints:
+                    nullable: true

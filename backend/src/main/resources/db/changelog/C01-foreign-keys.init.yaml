@@ -1,0 +1,118 @@
+databaseChangeLog:
+# USER_SPORTS TABLE FK
+  - changeSet:
+      id: add-foreign-key-user_sports-to-user
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: user_id
+          baseTableName: USER_SPORTS
+          constraintName: fk-user_sports-user
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: USERS
+  - changeSet:
+      id: add-foreign-key-user_sports-to-sport
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: sport_id
+          baseTableName: USER_SPORTS
+          constraintName: fk-user_sports-sport
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: SPORTS
+# USER TABLE FK
+  - changeSet:
+      id: add-foreign-key-users-to-image
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: image_id
+          baseTableName: USERS
+          constraintName: fk-users-image
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: IMAGES
+# VENUE TABLE FK
+  - changeSet:
+      id: add-foreign-key-venues-to-user
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: owner_id
+          baseTableName: VENUES
+          constraintName: fk-venues-user
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: USERS
+# VENUE_IMAGES FK
+  - changeSet:
+      id: add-foreign-key-venue_images-to-venue
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: venue_id
+          baseTableName: VENUE_IMAGES
+          constraintName: fk-venue_images-venue
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: VENUES
+  - changeSet:
+      id: add-foreign-key-venue_images-to-image
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: image_id
+          baseTableName: VENUE_IMAGES
+          constraintName: fk-venue_images-image
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: IMAGES
+# VENUE_SPORTS FK
+  - changeSet:
+      id: add-foreign-key-venue_sports-to-venue
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: venue_id
+          baseTableName: VENUE_SPORTS
+          constraintName: fk-venue_sports-venue
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: VENUES
+  - changeSet:
+      id: add-foreign-key-venue_sports-to-sport
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: sport_id
+          baseTableName: VENUE_SPORTS
+          constraintName: fk-venue_sports-sport
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: SPORTS
