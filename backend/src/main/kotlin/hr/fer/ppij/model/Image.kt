@@ -7,7 +7,7 @@ import javax.persistence.*
 data class Image(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long,
+        var id: Long? = null,
         var imageName: String,
         var alternate: String
 )

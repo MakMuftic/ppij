@@ -115,3 +115,69 @@ databaseChangeLog:
           schemaName: public
           separator: ","
           tableName: user_sports
+  - changeSet:
+      id: insert-venues
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          - column:
+              name: description
+              type: string
+          - column:
+              name: type
+              type: string
+          - column:
+              name: owner_id
+              type: string
+          encoding: UTF-8
+          file: db/data/venues.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venues
+  - changeSet:
+      id: insert-venue-images
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: venue_id
+              type: numeric
+          - column:
+              name: image_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/venue-images.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venue_images
+  - changeSet:
+      id: insert-venue-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: venue_id
+              type: numeric
+          - column:
+              name: sport_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/venue-sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venue_sports

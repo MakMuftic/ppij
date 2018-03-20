@@ -6,6 +6,6 @@ import javax.persistence.*
 @Table(name = "sports")
 data class Sport(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long,
+        var id: Long? = null,
         var name: String
 )

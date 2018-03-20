@@ -15,4 +15,16 @@ databaseChangeLog:
       file: db/changelog/005-roles.init.yaml
 
   - include:
+      file: db/changelog/006-venue.init.yaml
+
+  - include:
+      file: db/changelog/007-venue-images.init.yaml
+
+  - include:
+      file: db/changelog/008-venue-sports.init.yaml
+
+  - include:
+      file: db/changelog/C01-foreign-keys.init.yaml
+
+  - include:
       file: db/changelog/XXX-test-data.init.yaml

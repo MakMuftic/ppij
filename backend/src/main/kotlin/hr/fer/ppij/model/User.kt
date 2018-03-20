@@ -8,7 +8,7 @@ import javax.persistence.GenerationType.IDENTITY
 @Table(name = "users")
 data class User(
         @Id @GeneratedValue(strategy = IDENTITY)
-        var id: Long,
+        var id: Long? = null,
         var userName: String,
         var firstName: String? = null,
         var lastName: String? = null,
@@ -27,7 +27,7 @@ data class User(
         var image: Image? = null
 ) {
     fun toDto(): BasicUserDto = BasicUserDto(
-            id,
+            id!!,
             userName,
             firstName ?: "",
             lastName ?: "",
