@@ -3,9 +3,12 @@ package hr.fer.ppij.repository
 import hr.fer.ppij.model.*
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
-interface UserRepository : PagingAndSortingRepository<User, Long>
+interface UserRepository : PagingAndSortingRepository<User, Long> {
+    fun findByUserName(userName:String): Optional<User>
+}
 
 @Repository
 interface RoleRepository : PagingAndSortingRepository<Role, Long>

@@ -82,6 +82,9 @@ databaseChangeLog:
               name: email
               type: string
           - column:
+              name: password
+              type: string
+          - column:
               name: phone_number
               type: string
           - column:
@@ -89,6 +92,9 @@ databaseChangeLog:
               type: string
           - column:
               name: image_id
+              type: numeric
+          - column:
+              name: role_id
               type: numeric
           encoding: UTF-8
           file: db/data/users.csv

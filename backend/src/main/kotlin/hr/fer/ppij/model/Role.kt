@@ -7,5 +7,5 @@ import javax.persistence.*
 data class Role(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long? = null,
-        var name: String? = null
+        var name: String
 )

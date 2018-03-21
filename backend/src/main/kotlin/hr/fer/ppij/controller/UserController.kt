@@ -6,7 +6,9 @@ import hr.fer.ppij.model.User
 import hr.fer.ppij.repository.FavouriteRepository
 import hr.fer.ppij.repository.UserRepository
 import hr.fer.ppij.repository.VenueRepository
+import hr.fer.ppij.security.AuthoritiesConstants
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @ApiController

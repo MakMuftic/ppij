@@ -34,6 +34,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: password
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
                   name: phone_number
                   type: varchar(100)
                   constraints:
@@ -45,6 +50,11 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: image_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: role_id
                   type: bigint
                   constraints:
                     nullable: true
