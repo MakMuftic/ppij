@@ -17,6 +17,7 @@ import { EventfullComponent } from './Components/eventfull/eventfull.component';
 import { EventService } from './services/eventService';
 import { IgralisteService } from "./services/igralisteService";
 import { DvoranaService } from "./services/dvoranaService";
+import { LoginService } from "./services/login.service";
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -36,6 +37,7 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     RoutingModule,
+    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -45,7 +47,8 @@ export function tokenGetter() {
     })],
   providers: [EventService,
               IgralisteService,
-              DvoranaService],
+              DvoranaService,
+            LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
