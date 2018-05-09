@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-images-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: IMAGES
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: image_name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: alternate
+                  type: varchar(200)
+                  constraints:
+                    nullable: false

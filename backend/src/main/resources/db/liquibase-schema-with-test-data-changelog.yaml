@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001-users.init.yaml
+
+  - include:
+      file: db/changelog/002-sports.init.yaml
+
+  - include:
+      file: db/changelog/003-user-sports.init.yaml
+
+  - include:
+      file: db/changelog/004-images.init.yaml
+
+  - include:
+      file: db/changelog/005-roles.init.yaml
+
+  - include:
+      file: db/changelog/006-venue.init.yaml
+
+  - include:
+      file: db/changelog/007-venue-images.init.yaml
+
+  - include:
+      file: db/changelog/008-venue-sports.init.yaml
+
+  - include:
+      file: db/changelog/009-favourites.init.yaml
+
+  - include:
+      file: db/changelog/010-event.init.yaml
+
+  - include:
+      file: db/changelog/C01-foreign-keys.init.yaml
+
+  - include:
+      file: db/changelog/XXX-test-data.init.yaml

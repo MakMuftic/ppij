@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: USERS
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                    name: last_name
+                    type: varchar(100)
+                    constraints:
+                      nullable: false
+              - column:
+                  name: email
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: about_me_description
+                  type: varchar(400)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: true

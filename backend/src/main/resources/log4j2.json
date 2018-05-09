@@ -1,0 +1,61 @@
+{
+  "configuration": {
+    "name": "Default",
+    "properties": {
+      "property": [
+        {
+          "name": "log-path",
+          "value": "logs"
+        },
+        {
+          "name": "archive",
+          "value": "${log-path}/archive"
+        }
+      ]
+    },
+    "appenders": {
+      "Console": {
+        "name": "Console-Appender",
+        "target": "SYSTEM_OUT",
+        "PatternLayout": {
+          "pattern": "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        }
+      },
+      "RollingFile": {
+        "name": "DailyRollingFile",
+        "fileName": "${log-path}/360survey.log",
+        "filePattern": "${archive}/360survey.log.%d{dd-MM-yyyy}.gz",
+        "PatternLayout": {
+          "pattern": "%d [%7r] %5p - %c - %m%n"
+        },
+        "Policies": {
+          "TimeBasedTriggeringPolicy" :{
+            "interval" : "1"
+          }
+        },
+        "DefaultRolloverStrategy": {
+          "Delete": {
+            "basePath": "${archive}",
+            "maxDepth": "1",
+            "IfFileName": {
+              "glob": "360survey.log.*.gz"
+            },
+            "IfLastModified": {
+              "age": "5d"
+            }
+          }
+        }
+      }
+    },
+    "loggers": {
+      "logger": {
+        "name": "hr.altima",
+        "level": "debug",
+        "appender-ref": [{"ref": "DailyRollingFile"}]
+      },
+      "root": {
+        "appender-ref": [{"ref": "Console-Appender", "level": "info"}]
+      }
+    }
+  }
+}

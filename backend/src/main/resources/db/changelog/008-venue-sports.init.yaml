@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-venue-sports-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: VENUE_SPORTS
+            columns:
+              - column:
+                  name: venue_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sport_id
+                  type: bigint
+                  constraints:
+                    nullable: true

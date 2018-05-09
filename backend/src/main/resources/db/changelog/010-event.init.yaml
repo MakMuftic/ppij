@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-events-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: EVENTS
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: venue_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sport_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_id
+                  type: bigint
+                  constraints:
+                    nullable: true

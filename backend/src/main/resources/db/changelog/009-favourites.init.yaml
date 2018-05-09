@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-favourites-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: FAVOURITES
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: venue_id
+                  type: bigint
+                  constraints:
+                    nullable: true

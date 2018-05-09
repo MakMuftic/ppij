@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-sports-table
+      author: mace
+      changes:
+        - createTable:
+            tableName: SPORTS
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false

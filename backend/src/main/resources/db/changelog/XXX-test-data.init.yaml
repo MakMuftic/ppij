@@ -1,0 +1,208 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-roles
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          encoding: UTF-8
+          file: db/data/roles.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: roles
+  - changeSet:
+      id: insert-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          encoding: UTF-8
+          file: db/data/sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: sports
+  - changeSet:
+      id: insert-images
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: image_path
+              type: string
+          - column:
+              name: alternate
+              type: string
+          encoding: UTF-8
+          file: db/data/images.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: images
+  - changeSet:
+      id: insert-users
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: user_name
+              type: string
+          - column:
+              name: first_name
+              type: string
+          - column:
+              name: last_name
+              type: string
+          - column:
+              name: email
+              type: string
+          - column:
+              name: password
+              type: string
+          - column:
+              name: phone_number
+              type: string
+          - column:
+              name: about_me_description
+              type: string
+          - column:
+              name: image_id
+              type: numeric
+          - column:
+              name: role_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/users.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: users
+  - changeSet:
+      id: insert-user-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: user_id
+              type: numeric
+          - column:
+              name: sport_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/user-sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: user_sports
+  - changeSet:
+      id: insert-venues
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          - column:
+              name: description
+              type: string
+          - column:
+              name: type
+              type: string
+          - column:
+              name: owner_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/venues.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venues
+  - changeSet:
+      id: insert-venue-images
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: venue_id
+              type: numeric
+          - column:
+              name: image_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/venue-images.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venue_images
+  - changeSet:
+      id: insert-venue-sports
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: venue_id
+              type: numeric
+          - column:
+              name: sport_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/venue-sports.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: venue_sports
+  - changeSet:
+      id: insert-favourites
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: user_id
+              type: numeric
+          - column:
+              name: venue_id
+              type: numeric
+          encoding: UTF-8
+          file: db/data/favourites.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: favourites
