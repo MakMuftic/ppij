@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { LoginService } from "../../services/login.service";
+import {SportService} from "../../services/sportService";
 
 @Component({
   selector: 'app-startpage',
@@ -10,7 +11,9 @@ import { LoginService } from "../../services/login.service";
 export class StartpageComponent implements OnInit {
   loading = false;
   error = '';
-  constructor(private router: Router,private loginServie:LoginService) { }
+  sports:any[]=[];
+  constructor(private router: Router,private loginServie:LoginService,
+  private sportService:SportService) { }
 
   ngOnInit() {
   }
@@ -33,6 +36,11 @@ export class StartpageComponent implements OnInit {
   }
   posts() {
     this.router.navigate(['posts']);
+  }
+  getSports() {
+    this.sportService.getSports()
+      .then(sports => this.sports = sports);
+      console.log(this.sports);
   }
 
 }
