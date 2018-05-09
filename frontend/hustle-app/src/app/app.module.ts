@@ -20,7 +20,7 @@ import { IgralisteService } from "./services/igralisteService";
 import { DvoranaService } from "./services/dvoranaService";
 import { LoginService } from "./services/login.service";
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return JSON.parse(localStorage.getItem('currentUser')).token;
 }
 
 @NgModule({
