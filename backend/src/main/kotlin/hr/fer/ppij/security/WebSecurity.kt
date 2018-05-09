@@ -25,7 +25,10 @@ class WebSecurity(
 
     override fun configure(http: HttpSecurity) {
         http
-                .cors().and()
+                .cors()
+                .and()
+                .headers().frameOptions().disable()
+                .and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no sessions
                 .and()

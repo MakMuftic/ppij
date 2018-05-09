@@ -130,3 +130,75 @@ databaseChangeLog:
           onUpdate: CASCADE
           referencedColumnNames: id
           referencedTableName: SPORTS
+# FAVOURITES FK
+  - changeSet:
+      id: add-foreign-key-favourites-to-venue
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: venue_id
+          baseTableName: FAVOURITES
+          constraintName: fk-favourites-venue
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: VENUES
+  - changeSet:
+      id: add-foreign-favourites-to-user
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: user_id
+          baseTableName: FAVOURITES
+          constraintName: fk-favourites-user
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: USERS
+# EVENT FK
+  - changeSet:
+      id: add-foreign-key-event-to-venue
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: venue_id
+          baseTableName: EVENTS
+          constraintName: fk-EVENTS-venue
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: VENUES
+  - changeSet:
+      id: add-foreign-key-event-to-image
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: image_id
+          baseTableName: EVENTS
+          constraintName: fk-event-image
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: IMAGES
+  - changeSet:
+      id: add-foreign-key-sport-to-image
+      author: mace
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: sport_id
+          baseTableName: EVENTS
+          constraintName: fk-sport-image
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: RESTRICT
+          onUpdate: CASCADE
+          referencedColumnNames: id
+          referencedTableName: SPORTS

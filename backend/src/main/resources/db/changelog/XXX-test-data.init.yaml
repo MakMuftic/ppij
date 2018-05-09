@@ -142,7 +142,7 @@ databaseChangeLog:
               type: string
           - column:
               name: owner_id
-              type: string
+              type: numeric
           encoding: UTF-8
           file: db/data/venues.csv
           quotchar: ""

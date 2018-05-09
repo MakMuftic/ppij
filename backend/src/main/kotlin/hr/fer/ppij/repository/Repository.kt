@@ -27,3 +27,6 @@ interface FavouriteRepository : PagingAndSortingRepository<Favourite, Long> {
     fun findByUserId(userId:Long): List<Favourite>
     fun findByVenueId(venueId:Long): List<Favourite>
 }
+
+@Repository
+interface EventRepository : PagingAndSortingRepository<Event, Long>
