@@ -2,6 +2,7 @@ package hr.fer.ppij.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import hr.fer.ppij.model.LoginDetails
+import hr.fer.ppij.security.SecurityConstants.ACEH
 import hr.fer.ppij.security.SecurityConstants.EXPIRATION_TIME
 import hr.fer.ppij.security.SecurityConstants.HEADER_STRING
 import hr.fer.ppij.security.SecurityConstants.SECRET
@@ -54,6 +55,8 @@ class JWTAuthenticationFilter(
                 .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact()
+        //response.outputStream.print((auth.principal as User).toString())
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token)
+        response.addHeader(ACEH, HEADER_STRING)
     }
 }

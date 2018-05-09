@@ -6,6 +6,7 @@ object SecurityConstants {
     const val TOKEN_PREFIX = "Bearer "
     const val HEADER_STRING = "Authorization"
     const val STRENGTH = 10
+    const val ACEH = "access-control-expose-headers"
 }
 
 object AuthoritiesConstants {
