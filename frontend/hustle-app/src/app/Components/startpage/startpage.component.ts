@@ -39,8 +39,8 @@ export class StartpageComponent implements OnInit {
   }
   getSports() {
     this.sportService.getSports()
-      .then(sports => this.sports = sports);
-      console.log(this.sports);
+      //.then(sports => this.sports = sports);
+      //console.log(this.sports);
   }
 
 }

@@ -8,12 +8,12 @@ import 'rxjs/add/operator/map'
 export class SportService {
   constructor(private http:Http,private loginService:LoginService) {}
 
-  getSports(): Promise<any[]> {
+  getSports() {
     let headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.get('http://localhost:8080/api/sports',options)
       .toPromise()
-      .then(response => response.json() as any[]);
+      .then(response => console.log(response),err => console.log(""));
   }
 
 }
