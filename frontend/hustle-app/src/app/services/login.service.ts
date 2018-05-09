@@ -1,41 +1,44 @@
-import {Injectable} from '@angular/core';
-import {Headers, Http} from "@angular/http";
-import {User} from "../models/user";
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class LoginService {
+    public token: string;
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+    constructor(private http: Http) {
+        // set token if saved in local storage
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
+    }
 
-  constructor(private http: HttpClient) {
-  }
-  storeToken() {
+    login(username: string, password: string): Observable<boolean> {
+      username = "mace";
+      password = "pass"
+        return this.http.post('http://localhost:8080', JSON.stringify({ username: username, password: password }))
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let token = response.json() && response.json().token;
+                if (token) {
+                    // set token property
+                    this.token = token;
 
-  }
+                    // store username and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
 
-  loginUser(user:string,password:string){
-    user="mace";
-    password="pass";
-    const url = "/login";
-    let result = this.http.post(url,JSON.stringify({user,password})).subscribe(
-      res => {console.log(res)},
-      err => console.log(err)
-    );
-  }
+                    // return true to indicate successful login
+                    return true;
+                } else {
+                    // return false to indicate failed login
+                    return false;
+                }
+            });
+    }
 
-  getLoginedUser(): User {
-    const userString = localStorage.getItem("user");
-    const user = JSON.parse(userString);
-    return user === "null" ? null : user;
-  }
-
-  setLoginedUser(user: User) {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
-
-  logout() {
-    localStorage.setItem("user", "null");
-  }
-
+    logout(): void {
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+    }
 }

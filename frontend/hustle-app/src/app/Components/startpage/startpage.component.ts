@@ -8,13 +8,22 @@ import { LoginService } from "../../services/login.service";
   styleUrls: ['./startpage.component.css']
 })
 export class StartpageComponent implements OnInit {
-
+  loading = false;
+  error = '';
   constructor(private router: Router,private loginServie:LoginService) { }
 
   ngOnInit() {
   }
   login() {
-    this.loginServie.loginUser("la","la");
+    this.loginServie.login("la","la").subscribe(
+      result => {
+                if (result === true) {
+                    console.log(result);
+                } else {
+                    console.log("problem")
+                }
+            }
+    );
   }
   openProfile() {
     this.router.navigate(['user',"blabla"]);
