@@ -1,5 +1,13 @@
 # ppij
 
+#### Running backend
+run _mvn spring-boot:run_ from ./backend folder
+
+Backend is started at _localhost:8080/_
+
+###### From IntelliJ IDEA
+_In **Maven Projects** tab open **backend** than **Plugins** than **spring-boot** and double click **spring-boot:run**_
+
 #### Security
 You can test login procedure:
 ###### Login endpoint
