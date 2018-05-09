@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { provideRoutes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { RoutingModule } from "./routing/routing.module";
@@ -38,6 +39,7 @@ export function tokenGetter() {
     BrowserModule,
     RoutingModule,
     HttpClientModule,
+    HttpModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
