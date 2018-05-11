@@ -2,6 +2,7 @@ import { Venue } from "./venue";
 import { Sport } from "./sport";
 export class Event {
    location : string;
+   name : string;
    id:number;
    creator:string;
    date :string;
