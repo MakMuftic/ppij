@@ -1,5 +1,6 @@
 package hr.fer.ppij.model
 
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -17,5 +18,8 @@ data class Event (
         var sport: Sport,
         @ManyToOne
         @JoinColumn(name = "image_id")
-        var image: Image? = null
+        var image: Image? = null,
+        @Basic
+        @Temporal(TemporalType.TIMESTAMP)
+        var date: Date
 )
