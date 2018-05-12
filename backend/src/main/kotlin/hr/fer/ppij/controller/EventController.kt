@@ -21,8 +21,11 @@ class EventController(
         private val sportRepository: SportRepository
 ) {
 
+    @GetMapping("/events")
+    fun getAllEvents() = eventRepository.findAll()
+    
     @GetMapping("/events/{eventId}")
-    fun getAllEvents(@PathVariable eventId: Long): ResponseEntity<*> {
+    fun getEvent(@PathVariable eventId: Long): ResponseEntity<*> {
         eventRepository.findOne(eventId)?.let {
             return ResponseEntity.ok(it)
         }
