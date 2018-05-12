@@ -2,39 +2,45 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import {LoginService} from "./login.service";
-import { Event } from "../models/Event";
+import { Venue} from "../models/venue";
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class SportService {
+export class VenueService {
   headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
-  getEvents() {
-    return this.http.get('http://localhost:8080/api/events',this.options)
+  getVenues() {
+    return this.http.get('http://localhost:8080/api/venues',this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""));
   }
-  getEvent(event : Event) {
-    return this.http.get('http://localhost:8080/api/events/${event.id}',this.options)
+  getVenue(venue: Venue) {
+    return this.http.get('http://localhost:8080/api/venues/${venue.id}',this.options)
       .toPromise()
       .then(response => { return response as any;})
   }
-  deleteEvent(event : Event) {
-    return this.http.delete('http://localhost:8080/api/events/${event.id}',this.options)
+  deleteVenue(venue: Event) {
+    return this.http.delete('http://localhost:8080/api/venues/${venue.id}',this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
-  updateEvent(event : Event) {
-    return this.http.put('http://localhost:8080/api/events/${event.id}',JSON.stringify(event),this.options)
+  addVenue(venue: Event) {
+    return this.http.post('http://localhost:8080/api/venues',JSON.stringify(venue),this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
-  addEvent(event : Event) {
-    return this.http.post('http://localhost:8080/api/events',JSON.stringify(event),this.options)
+  updateVenue(venue: Event) {
+    return this.http.put('http://localhost:8080/api/venues/${venue.id}',JSON.stringify(venue),this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
+  getAllUserFacoritingThisVenue(venue: Event):Promise<any[]> {
+    return this.http.get('http://localhost:8080/api/venues/${venue.id}/favourites',this.options)
+      .toPromise()
+      .then(response => { return response.json() as any[];})
+  }
+  
 
 }
