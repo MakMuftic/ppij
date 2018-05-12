@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class SportService {
-  headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
+  headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token,"Content-Type":"application/json"});
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
@@ -17,19 +17,24 @@ export class SportService {
       .then(response => console.log(response),err => console.log(""));
   }
   getSport(sport : Sport) {
-    return this.http.get('http://localhost:8080/api/sports/${sport.id}',this.options)
+    return this.http.get('http://localhost:8080/api/sports/?name=${sport.name}',this.options)
       .toPromise()
-      .then(response => { return response as any;})
+      .then(response => console.log(response),err => console.log("problem"));
   }
   deleteSport(sport : Sport) {
-    return this.http.delete('http://localhost:8080/api/sports/${sport.id}',this.options)
+    return this.http.delete('http://localhost:8080/api/sports/?name=${sport.name}',this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => console.log("problem"));
   }
   addSport(sport : Sport) {
-    return this.http.post('http://localhost:8080/api/sports/',JSON.stringify(sport),this.options)
+    return this.http.post('http://localhost:8080/api/sports',JSON.stringify(sport),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => console.log("problem"))
+  }
+  editSport(sport:Sport) {
+    return this.http.put('http://localhost:8080/api/sports/?name=${sport.name}',JSON.stringify(sport),this.options)
+      .toPromise()
+      .then(response => console.log(response),err => console.log("problem"))
   }
 
 

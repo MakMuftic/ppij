@@ -52,13 +52,13 @@ export class StartpageComponent implements OnInit {
       //console.log(this.sports);
   }
   ipsrobajmoSve() {
+    console.log("hahaha");
     let venue = new Venue(50,"lala","b","c","d","v");
-    let sport = new Sport(50,"lalala");
+    let sport = new Sport("lalala");
     let user = new User(50,"lala","lala","lala","0","b","c","d","b",false);
     let event = new Event("lala",50,"blabla","b","c",venue,sport,"lala");
-    this.sportService.addSport(sport);
     this.sportService.getSport(sport);
-    this.sportService.getSports();
+    /*this.sportService.getSports();
     this.sportService.deleteSport(sport);
     this.eventService.addEvent(event);
     event.name="asfjahfashf";
@@ -75,7 +75,7 @@ export class StartpageComponent implements OnInit {
     venue.description = "sajdajdasd";
     this.venueService.updateVenue(venue);
     this.venueService.getVenue(venue);
-    this.venueService.deleteVenue(venue);
+    this.venueService.deleteVenue(venue);*/
 
   }
 
