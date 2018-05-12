@@ -55,13 +55,12 @@ class EventController(
         return ResponseEntity.notFound().build()
     }
 
-    @DeleteMapping("/events/[eventId]")
+    @DeleteMapping("/events/{eventId}")
     fun deleteEvent(@PathVariable eventId: Long): ResponseEntity<*> {
-        eventRepository.findOne(eventId)?.let {
+        return if (eventRepository.findOne(eventId) != null) {
             eventRepository.delete(eventId)
-            return ResponseEntity.ok().build()
-        }
-        return ResponseEntity.notFound().build()
+            ResponseEntity.ok().build()
+        } else ResponseEntity.notFound().build()
     }
 }
 
