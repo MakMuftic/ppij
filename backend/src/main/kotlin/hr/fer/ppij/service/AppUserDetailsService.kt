@@ -14,11 +14,10 @@ class AppUserDetailsService(
         private val userRepository: UserRepository
 ) : UserDetailsService {
     override fun loadUserByUsername(s: String): UserDetails {
-        val user = userRepository.findByUserName(s).
-                orElseThrow { UsernameNotFoundException("The username $s doesn't exist") }
+        val user = userRepository.findByUserName(s).orElseThrow { UsernameNotFoundException("The username $s doesn't exist") }
 
         val authorities = ArrayList<GrantedAuthority>()
-        authorities.add(SimpleGrantedAuthority(user.role.name))
+        authorities.add(SimpleGrantedAuthority(if (user.admin) "ADMIN" else "USER"))
 
         return User(
                 user.userName,

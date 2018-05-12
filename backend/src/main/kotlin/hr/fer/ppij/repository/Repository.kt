@@ -11,9 +11,6 @@ interface UserRepository : PagingAndSortingRepository<User, Long> {
 }
 
 @Repository
-interface RoleRepository : PagingAndSortingRepository<Role, Long>
-
-@Repository
 interface SportRepository : PagingAndSortingRepository<Sport, Long> {
     fun findByName(name:String) : List<Sport>
 }

@@ -43,20 +43,6 @@ databaseChangeLog:
           onUpdate: CASCADE
           referencedColumnNames: id
           referencedTableName: IMAGES
-  - changeSet:
-      id: add-foreign-key-users-to-role
-      author: mace
-      changes:
-      - addForeignKeyConstraint:
-          baseColumnNames: role_id
-          baseTableName: USERS
-          constraintName: fk-users-role
-          deferrable: false
-          initiallyDeferred: false
-          onDelete: RESTRICT
-          onUpdate: CASCADE
-          referencedColumnNames: id
-          referencedTableName: ROLES
 # VENUE TABLE FK
   - changeSet:
       id: add-foreign-key-venues-to-user

@@ -54,7 +54,7 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: role_id
-                  type: bigint
+                  name: admin
+                  type: boolean
                   constraints:
-                    nullable: true
+                    nullable: false

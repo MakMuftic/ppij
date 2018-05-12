@@ -66,7 +66,8 @@ class UserController(
                     aboutMeDescription = user.aboutMeDescription,
                     phoneNumber = user.phoneNumber,
                     image = user.image,
-                    sports = user.sports
+                    sports = user.sports,
+                    admin = user.admin
             )
             return ResponseEntity.ok(userRepository.save(updatedUser))
         }
