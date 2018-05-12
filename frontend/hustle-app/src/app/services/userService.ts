@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 
 
 @Injectable()
-export class SportService {
+export class UserService {
   headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}

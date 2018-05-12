@@ -6,7 +6,7 @@ import { Event } from "../models/Event";
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class SportService {
+export class EventService {
   headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}

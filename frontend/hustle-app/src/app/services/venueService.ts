@@ -21,17 +21,17 @@ export class VenueService {
       .toPromise()
       .then(response => { return response as any;})
   }
-  deleteVenue(venue: Event) {
+  deleteVenue(venue: Venue) {
     return this.http.delete('http://localhost:8080/api/venues/${venue.id}',this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
-  addVenue(venue: Event) {
+  addVenue(venue: Venue) {
     return this.http.post('http://localhost:8080/api/venues',JSON.stringify(venue),this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
-  updateVenue(venue: Event) {
+  updateVenue(venue: Venue) {
     return this.http.put('http://localhost:8080/api/venues/${venue.id}',JSON.stringify(venue),this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
@@ -41,6 +41,6 @@ export class VenueService {
       .toPromise()
       .then(response => { return response.json() as any[];})
   }
-  
+
 
 }

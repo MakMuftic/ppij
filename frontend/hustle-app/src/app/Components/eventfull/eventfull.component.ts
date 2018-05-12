@@ -11,7 +11,7 @@ export class EventfullComponent implements OnInit {
   constructor(private eventService: EventService ) { }
 
   ngOnInit() {
-    this.event = this.eventService.serviceData;
+    
   }
 
 

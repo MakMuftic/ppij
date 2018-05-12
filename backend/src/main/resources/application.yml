@@ -33,7 +33,7 @@ server:
 
 liquibase:
   default-schema: public
-  change-log: classpath:db/liquibase-schema-changelog.yaml
+  change-log: classpath:db/liquibase-schema-with-test-data-changelog.yaml
 
 logging:
   level:

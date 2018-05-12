@@ -15,7 +15,7 @@ export class EventComponent implements OnInit {
   ngOnInit() {
   }
   more() {
-    this.eventService.serviceData = this.event;
+    //this.eventService.serviceData = this.event;
     this.router.navigate(['event',"{{event.id}}"]);
   }
 

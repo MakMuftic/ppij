@@ -13,11 +13,6 @@ export class EventListComponent implements OnInit {
   imena: string[] = ["Marko","Ivan","Lili","Pero","Djordj"];
   constructor() { }
 
-  ngOnInit() {
-    var i:number;
-    for(i=0 ; i< 5; i++) {
-      this.events[i] = new Event("bla bla",i,this.imena[i],"15-10-2011","lalala",new Venue(),new Sport(),"llalal");
-    }
-  }
+  ngOnInit() {}
 
 }
