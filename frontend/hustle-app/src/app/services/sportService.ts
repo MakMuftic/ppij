@@ -17,12 +17,14 @@ export class SportService {
       .then(response => console.log(response),err => console.log(""));
   }
   getSport(sport : Sport) {
-    return this.http.get('http://localhost:8080/api/sports/?name=${sport.name}',this.options)
+    return this.http.get('http://localhost:8080/api/sports/?id=${sport.id}',this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log("problem"));
   }
   deleteSport(sport : Sport) {
-    return this.http.delete('http://localhost:8080/api/sports/?name=${sport.name}',this.options)
+    let variable = sport.id;
+    let url = "http://localhost:8080/api/sports/"+variable;
+    return this.http.delete(url,this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log("problem"));
   }
@@ -32,7 +34,9 @@ export class SportService {
       .then(response => console.log(response),err => console.log("problem"))
   }
   editSport(sport:Sport) {
-    return this.http.put('http://localhost:8080/api/sports/?name=${sport.name}',JSON.stringify(sport),this.options)
+    let variable = sport.id;
+    let url = "http://localhost:8080/api/sports/"+variable;
+    return this.http.put(url,JSON.stringify(sport),this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log("problem"))
   }

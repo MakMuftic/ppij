@@ -9,6 +9,8 @@ import { User } from "../../models/user";
 import { Event } from "../../models/Event";
 import { Venue } from "../../models/venue";
 import { Sport } from "../../models/sport";
+import { Image } from "../../models/image";
+import { ImageService } from "../../services/imageService";
 
 
 @Component({
@@ -22,7 +24,7 @@ export class StartpageComponent implements OnInit {
   sports:any[]=[];
   constructor(private router: Router,private loginServie:LoginService,
   private sportService:SportService,private eventService:EventService,
-  private venueService:VenueService,private userService:UserService) { }
+  private venueService:VenueService,private userService:UserService,private imageService:ImageService) { }
 
   ngOnInit() {
   }
@@ -52,17 +54,18 @@ export class StartpageComponent implements OnInit {
       //console.log(this.sports);
   }
   ipsrobajmoSve() {
-    console.log("hahaha");
     let venue = new Venue(50,"lala","b","c","d","v");
     let sport = new Sport("lalala");
     let user = new User(50,"lala","lala","lala","0","b","c","d","b",false);
-    let event = new Event("lala",50,"blabla","b","c",venue,sport,"lala");
-    this.sportService.getSport(sport);
-    /*this.sportService.getSports();
-    this.sportService.deleteSport(sport);
-    this.eventService.addEvent(event);
-    event.name="asfjahfashf";
-    this.eventService.updateEvent(event);
+    this.imageService.getImage(1).then(response => {
+      var event = new Event("lala","blabla",1,2,response.json() as Image,new Date().toUTCString());
+      this.eventService.addEvent(event);});
+    let event = this.eventService.getEvent(1).then(response => { let event = (response.json() as Event);
+    event.name = "aafasfasfasasdasd";
+    this.eventService.updateEvent(event)});
+    this.eventService.getEvents();
+    this.eventService.deleteEvent(1);
+    /*this.eventService.updateEvent(event);
     this.eventService.getEvent(event);
     this.eventService.deleteEvent(event);
     this.userService.getUsers();

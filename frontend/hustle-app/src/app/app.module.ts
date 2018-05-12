@@ -23,6 +23,7 @@ import { SportlistComponent } from './Components/sportlist/sportlist.component';
 import { SportService } from "./services/sportService";
 import { UserService } from "./services/userService";
 import { VenueService } from "./services/venueService";
+import { ImageService } from "./services/imageService";
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('currentUser')).token;
 }
@@ -58,7 +59,8 @@ export function tokenGetter() {
             LoginService,
           SportService,
         VenueService,
-      UserService],
+      UserService,
+    ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

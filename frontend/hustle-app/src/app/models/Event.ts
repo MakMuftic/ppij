@@ -1,24 +1,21 @@
 import { Venue } from "./venue";
 import { Sport } from "./sport";
+import { Image } from "./image";
 export class Event {
-   location : string;
-   name : string;
    id:number;
-   creator:string;
-   date :string;
+   name : string;
    description:string;
-   venue: Venue;
-   sport:Sport;
-   image:string;
-   constructor(location:string,id:number,creator:string,date:string,
-                description:string,venue:Venue,sport:Sport,image:string) {
-                  this.location=location;
-                  this.id=id;
-                  this.creator=creator;
+   venueId: number;
+   sportId:number;
+   image:Image;
+   date :string;
+   constructor(name:string,description:string,
+                venueId:number,sportId:number,image:Image,date:string) {
+                  this.name = name;
+                  this.description = description;
+                  this.venueId = venueId;
+                  this.sportId = sportId;
+                  this.image = image;
                   this.date=date;
-                  this.description=description;
-                  this.venue=venue;
-                  this.sport=sport;
-                  this.image=image;
                 }
 }
