@@ -19,6 +19,11 @@ class SportController(private val sportRepository: SportRepository) {
         }
         return ResponseEntity.notFound().build()
     }
+    @GetMapping("/sports/")
+    fun findAllByName(@RequestParam("name") name: String): List<Sport> = sportRepository.findByName(name)
+
+    @PutMapping("/sports")
+    fun editSport(@RequestBody sport: Sport) = sportRepository.save(sport)
 
     @PostMapping("/sports")
     fun addSport(@RequestBody sport: Sport) = sportRepository.save(sport)
@@ -27,6 +32,16 @@ class SportController(private val sportRepository: SportRepository) {
     fun deleteSport(@PathVariable sportId: Long): ResponseEntity<Void> {
         sportRepository.findOne(sportId)?.let {
             sportRepository.delete(sportId)
+            return ResponseEntity.ok().build()
+        }
+        return ResponseEntity.notFound().build()
+    }
+
+    @DeleteMapping("/sports/")
+    fun deleteByName(@RequestParam("name") name: String): ResponseEntity<Void> {
+        val foundSport = sportRepository.findByName(name)
+        if(foundSport.isNotEmpty()) {
+            sportRepository.delete(foundSport[0])
             return ResponseEntity.ok().build()
         }
         return ResponseEntity.notFound().build()
