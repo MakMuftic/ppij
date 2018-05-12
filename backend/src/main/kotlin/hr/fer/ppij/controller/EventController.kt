@@ -3,16 +3,12 @@ package hr.fer.ppij.controller
 import hr.fer.ppij.ApiController
 import hr.fer.ppij.model.Event
 import hr.fer.ppij.model.Image
-import hr.fer.ppij.model.Sport
-import hr.fer.ppij.model.Venue
 import hr.fer.ppij.repository.EventRepository
 import hr.fer.ppij.repository.SportRepository
 import hr.fer.ppij.repository.VenueRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
-import javax.persistence.*
-import kotlin.reflect.jvm.internal.impl.descriptors.annotations.Annotations
 
 @ApiController
 class EventController(
@@ -23,7 +19,7 @@ class EventController(
 
     @GetMapping("/events")
     fun getAllEvents() = eventRepository.findAll()
-    
+
     @GetMapping("/events/{eventId}")
     fun getEvent(@PathVariable eventId: Long): ResponseEntity<*> {
         eventRepository.findOne(eventId)?.let {
