@@ -206,3 +206,37 @@ databaseChangeLog:
           schemaName: public
           separator: ","
           tableName: favourites
+  - changeSet:
+      id: insert-events
+      author: mace
+      changes:
+      - loadData:
+          columns:
+          columns:
+          - column:
+              name: id
+              type: numeric
+          - column:
+              name: name
+              type: string
+          - column:
+              name: description
+              type: string
+          - column:
+              name: venue_id
+              type: numeric
+          - column:
+              name: sport_id
+              type: numeric
+          - column:
+              name: image_id
+              type: numeric
+          - column:
+              name: date
+              type: timestamp
+          encoding: UTF-8
+          file: db/data/events.csv
+          quotchar: ""
+          schemaName: public
+          separator: ","
+          tableName: events
