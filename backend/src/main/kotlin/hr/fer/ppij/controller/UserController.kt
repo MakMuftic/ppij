@@ -49,6 +49,7 @@ class UserController(
     fun updateUser(@PathVariable userId: Long, @RequestBody user: User): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
             val updatedUser = it.copy(
+                    id = userId,
                     userName = user.userName,
                     firstName = user.firstName,
                     lastName = user.lastName,

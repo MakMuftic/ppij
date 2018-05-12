@@ -22,8 +22,17 @@ class SportController(private val sportRepository: SportRepository) {
     @GetMapping("/sports/")
     fun findAllByName(@RequestParam("name") name: String): List<Sport> = sportRepository.findByName(name)
 
-    @PutMapping("/sports")
-    fun editSport(@RequestBody sport: Sport) = sportRepository.save(sport)
+    @PutMapping("/sports/{sportId}")
+    fun editSport(@RequestBody sport: Sport,@PathVariable sportId: Long): ResponseEntity<*> {
+        sportRepository.findOne(sportId)?.let {
+            val updatedSport = it.copy(
+                    id = sportId,
+                    name = sport.name
+            )
+            return ResponseEntity.ok(sportRepository.save(updatedSport))
+        }
+        return ResponseEntity.notFound().build()
+    }
 
     @PostMapping("/sports")
     fun addSport(@RequestBody sport: Sport) = sportRepository.save(sport)
