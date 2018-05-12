@@ -15,7 +15,7 @@ data class User(
         var lastName: String? = null,
         var email: String,
         @JsonIgnore
-        var password:String,
+        var password:String? = null,
         var phoneNumber: String,
         var aboutMeDescription: String,
         @ManyToMany(fetch = FetchType.LAZY, cascade = [(CascadeType.PERSIST), (CascadeType.MERGE)])

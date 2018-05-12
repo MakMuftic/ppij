@@ -42,8 +42,17 @@ class UserController(
         return ResponseEntity.notFound().build()
     }
 
+    data class UserPasswordDto(
+            val user: User,
+            val password: String
+    )
+
     @PostMapping("/users")
-    fun saveUser(@RequestBody user: User): User = userRepository.save(user)
+    fun saveUser(@RequestBody user: UserPasswordDto): User {
+        val newUser = user.user
+        newUser.password = user.password
+        return userRepository.save(newUser)
+    }
 
     @PutMapping("/users/{userId}")
     fun updateUser(@PathVariable userId: Long, @RequestBody user: User): ResponseEntity<*> {
