@@ -13,8 +13,7 @@ export class ImageService {
 
   getImages() {
     return this.http.get('http://localhost:8080/api/images',this.options)
-      .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .toPromise();
   }
   getImage(id : number) {
     return this.http.get('http://localhost:8080/api/images/'+id,this.options)

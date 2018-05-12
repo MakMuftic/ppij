@@ -54,21 +54,51 @@ export class StartpageComponent implements OnInit {
       //console.log(this.sports);
   }
   ipsrobajmoSve() {
-    let venue = new Venue(50,"lala","b","c","d","v");
-    let sport = new Sport("lalala");
-    let user = new User(50,"lala","lala","lala","0","b","c","d","b",false);
-    this.imageService.getImage(1).then(response => {
+    /*this.imageService.getImage(1).then(response => {
       var event = new Event("lala","blabla",1,2,response.json() as Image,new Date().toUTCString());
       this.eventService.addEvent(event);});
     let event = this.eventService.getEvent(1).then(response => { let event = (response.json() as Event);
     event.name = "aafasfasfasasdasd";
     this.eventService.updateEvent(event)});
     this.eventService.getEvents();
-    this.eventService.deleteEvent(1);
-    /*this.eventService.updateEvent(event);
-    this.eventService.getEvent(event);
-    this.eventService.deleteEvent(event);
-    this.userService.getUsers();
+    this.eventService.deleteEvent(1);*/
+    /*let pass = "pass";
+    this.imageService.getImage(1).then(response => {
+      let image = response.json() as Image
+      this.sportService.getSports().then(response => {
+        var user = new User("lala","blabla","blabla","blabla","080595235","sdad",response.json() as Sport[],image,false);
+        this.userService.registerUser(user,pass);
+      });
+    });
+    let user = this.userService.getUser(5).then(response => {
+      {let user = response.json() as User;
+      user.userName = "sadadasd";
+      this.userService.updateUser(user);
+    }
+  });
+    this.userService.deleteUser(5);*/
+    //this.userService.getUserFavouritesVenues(1);
+    //this.userService.addUserFavouritesVenues(2,1);
+    //this.userService.deleteUserFavouritesVenues(1,1);
+    /*this.sportService.getSports().then(response => {
+      let sports = response.json() as Sport[];
+      this.imageService.getImage(1).then(response => {
+        let venue = new Venue("hahaha","hahaha",sports,"outdoor_public","martinovka",[response.json() as Image]);
+        this.venueService.addVenue(venue);
+      })
+
+    })*/
+    /*this.venueService.getVenue(1);
+    this.venueService.getVenues();*/
+    /*this.venueService.getVenue(2).then(response => {
+      let venue = response.json() as Venue;
+      venue.name = "blabla";
+      this.venueService.updateVenue(venue);
+    })*/
+    /*this.venueService.deleteVenue(2);
+    this.venueService.getAllUserFavoritingThisVenue(1);*/
+
+    /*this.userService.getUsers();
     this.userService.registerUser(user);
     user.username = "blblblblb";
     this.userService.updateUser(user);
@@ -80,6 +110,5 @@ export class StartpageComponent implements OnInit {
     this.venueService.getVenue(venue);
     this.venueService.deleteVenue(venue);*/
 
-  }
-
+}
 }

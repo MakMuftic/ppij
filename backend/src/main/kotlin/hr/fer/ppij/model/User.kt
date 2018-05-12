@@ -18,7 +18,7 @@ data class User(
         var password:String? = null,
         var phoneNumber: String,
         var aboutMeDescription: String,
-        @ManyToMany(fetch = FetchType.LAZY, cascade = [(CascadeType.PERSIST), (CascadeType.MERGE)])
+        @ManyToMany(fetch = FetchType.LAZY, cascade = [(CascadeType.MERGE)])
         @JoinTable(name = "user_sports",
                 joinColumns = [(JoinColumn(name = "user_id", referencedColumnName = "id"))],
                 inverseJoinColumns = [(JoinColumn(name = "sport_id", referencedColumnName = "id"))])

@@ -13,13 +13,11 @@ export class SportService {
 
   getSports() {
     return this.http.get('http://localhost:8080/api/sports',this.options)
-      .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .toPromise();
   }
-  getSport(sport : Sport) {
-    return this.http.get('http://localhost:8080/api/sports/?id=${sport.id}',this.options)
-      .toPromise()
-      .then(response => console.log(response),err => console.log("problem"));
+  getSport(sport : number) {
+    return this.http.get('http://localhost:8080/api/sports/'+sport,this.options)
+      .toPromise();
   }
   deleteSport(sport : Sport) {
     let variable = sport.id;

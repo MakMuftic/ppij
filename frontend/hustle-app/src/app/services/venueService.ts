@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class VenueService {
-  headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token });
+  headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token,"Content-Type":"application/json"});
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
@@ -16,13 +16,12 @@ export class VenueService {
       .toPromise()
       .then(response => console.log(response),err => console.log(""));
   }
-  getVenue(venue: Venue) {
-    return this.http.get('http://localhost:8080/api/venues/${venue.id}',this.options)
-      .toPromise()
-      .then(response => { return response as any;})
+  getVenue(venue:number) {
+    return this.http.get('http://localhost:8080/api/venues/'+venue,this.options)
+      .toPromise();
   }
-  deleteVenue(venue: Venue) {
-    return this.http.delete('http://localhost:8080/api/venues/${venue.id}',this.options)
+  deleteVenue(venue: number) {
+    return this.http.delete('http://localhost:8080/api/venues/'+venue,this.options)
       .toPromise()
       .then(response => console.log(response),err => console.log(""))
   }
@@ -32,14 +31,13 @@ export class VenueService {
       .then(response => console.log(response),err => console.log(""))
   }
   updateVenue(venue: Venue) {
-    return this.http.put('http://localhost:8080/api/venues/${venue.id}',JSON.stringify(venue),this.options)
-      .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+    return this.http.put('http://localhost:8080/api/venues/'+venue.id,JSON.stringify(venue),this.options)
+      .toPromise();
   }
-  getAllUserFacoritingThisVenue(venue: Event):Promise<any[]> {
-    return this.http.get('http://localhost:8080/api/venues/${venue.id}/favourites',this.options)
+  getAllUserFavoritingThisVenue(venue:number) {
+    return this.http.get('http://localhost:8080/api/venues/'+venue+'/favourites',this.options)
       .toPromise()
-      .then(response => { return response.json() as any[];})
+      .then(response => console.log(response),err => console.log("problem"));
   }
 
 
