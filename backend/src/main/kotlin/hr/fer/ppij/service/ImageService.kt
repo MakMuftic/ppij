@@ -36,7 +36,7 @@ class ImageService(
         } catch (e: IOException) {
             throw ImagePersistenceException(e)
         }
-        val savedImage = Image(imageName = imageName, alternate = file.originalFilename, id = 0)
+        val savedImage = Image(imageName = imageName, id = 0)
         return imageRepository.save(savedImage)
     }
 
