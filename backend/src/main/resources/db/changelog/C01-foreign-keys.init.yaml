@@ -43,21 +43,6 @@ databaseChangeLog:
           onUpdate: CASCADE
           referencedColumnNames: id
           referencedTableName: IMAGES
-# VENUE TABLE FK
-  - changeSet:
-      id: add-foreign-key-venues-to-user
-      author: mace
-      changes:
-      - addForeignKeyConstraint:
-          baseColumnNames: owner_id
-          baseTableName: VENUES
-          constraintName: fk-venues-user
-          deferrable: false
-          initiallyDeferred: false
-          onDelete: RESTRICT
-          onUpdate: CASCADE
-          referencedColumnNames: id
-          referencedTableName: USERS
 # VENUE_IMAGES FK
   - changeSet:
       id: add-foreign-key-venue_images-to-venue

@@ -1,2 +1,2 @@
-id,name,description,type,owner_id
-1,Martinovka,Opis martinovke bla bla,indor_public,null
+id,name,description,type,location
+1,Martinovka,Opis martinovke bla bla,indor_public,Unska 3

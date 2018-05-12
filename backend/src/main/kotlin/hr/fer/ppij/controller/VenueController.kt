@@ -36,7 +36,7 @@ class VenueController(
                     description = venue.description,
                     sports = venue.sports,
                     type = venue.type,
-                    owner = venue.owner,
+                    location = venue.location,
                     images = venue.images
             )
             return ResponseEntity.ok(venueRepository.save(updatedVenue))
