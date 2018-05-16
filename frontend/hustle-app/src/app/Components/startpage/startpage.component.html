@@ -4,18 +4,18 @@
     <div class="c-sidebar__username">{{localStorageItemName("currentUser")}}</div>
     <div class="c-sidebar__label">Events</div>
     <div class="c-sidebar__links">
-      <button type="button" class="c-sidebar__link is-active" (click)="toEvents()"><i class="material-icons c-sidebar__icon" >event_note</i> All events</button>
-      <button type="button"  class="c-sidebar__link"><i class="material-icons c-sidebar__icon">add</i> New event</button>
+      <a  style="cursor: pointer;" class="c-sidebar__link is-active" (click)="toEvents()"><i class="material-icons c-sidebar__icon" >event_note</i> All events</a>
+      <a  style="cursor: pointer;" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">add</i> New event</a>
     </div>
     <div class="c-sidebar__label">Locations</div>
     <div class="c-sidebar__links">
-      <button type="button" class="c-sidebar__link" (click)="toVenues()"><i class="material-icons c-sidebar__icon" >location_on</i> Venues</button>
-      <button type="button"  class="c-sidebar__link" (click)="tofavorites()"><i class="material-icons c-sidebar__icon">star</i> Favorites</button>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="toVenues()"><i class="material-icons c-sidebar__icon" >location_on</i> Venues</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="tofavorites()"><i class="material-icons c-sidebar__icon">star</i> Favorites</a>
     </div>
     <div class="c-sidebar__label">Profile</div>
     <div class="c-sidebar__links">
-      <button type="button" class="c-sidebar__link"><i class="material-icons c-sidebar__icon" (click)="openProfile()">settings</i> Settings</button>
-      <a href="#"  class="c-sidebar__link"><i class="material-icons c-sidebar__icon" (click)="logOut()">lock</i> Log out</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="openProfile()"><i class="material-icons c-sidebar__icon">settings</i> Settings</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="logOut()"><i class="material-icons c-sidebar__icon">lock</i> Log out</a>
     </div>
   </div>
   <div class="c-content">

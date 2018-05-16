@@ -38,7 +38,7 @@ export class StartpageComponent implements OnInit {
   ngOnInit() {
   }
   openProfile() {
-    this.router.navigate(['user',this.localStorageItemName('currentUser')]);
+    this.router.navigate(['user',JSON.parse(localStorage.getItem('currentUser')).username]);
   }
   toEvents() {
     this.type="E";

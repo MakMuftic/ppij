@@ -60,13 +60,14 @@ export function tokenGetter() {
         blacklistedRoutes: ['']
       }
     })],
-  providers: [EventService,
-              IgralisteService,
-              DvoranaService,
-            LoginService,
-          SportService,
-        VenueService,
-      UserService,
+  providers: [
+    EventService,
+    IgralisteService,
+    DvoranaService,
+    LoginService,
+    SportService,
+    VenueService,
+    UserService,
     ImageService],
   bootstrap: [AppComponent]
 })

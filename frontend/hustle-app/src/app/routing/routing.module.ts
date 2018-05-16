@@ -8,16 +8,15 @@ import { ProfileComponent } from "../Components/profile/profile.component";
 import { EventfullComponent } from "../Components/eventfull/eventfull.component";
 const routes: Routes = [
   {
-    path: "event/:id",
-    component: EventfullComponent
-  },
-  {
     path : "startpage",
     component: StartpageComponent
   },
   {
     path : "welcomepage",
-    component: WelcomeComponent
+    component: WelcomeComponent,
+    children: [
+
+    ]
   },
   {
     path: "events",
@@ -30,12 +29,17 @@ const routes: Routes = [
   {
     path : "**",
     component: WelcomeComponent
+  },
+  {
+    path: "event/:id",
+    component: EventfullComponent
   }
+
 
 
 ]
 @NgModule({
-  imports: [[RouterModule.forRoot(routes)]],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  exports: [RouterModule],
 })
 export class RoutingModule {}
