@@ -16,6 +16,10 @@ const routes: Routes = [
     component: StartpageComponent
   },
   {
+    path : "welcomepage",
+    component: WelcomeComponent
+  },
+  {
     path: "events",
     component: EventsComponent
   },

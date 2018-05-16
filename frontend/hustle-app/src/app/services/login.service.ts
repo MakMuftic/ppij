@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response ,RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
@@ -14,8 +14,8 @@ export class LoginService {
     }
 
     login(username: string, password: string): Observable<boolean> {
-      username = "mace";
-      password = "pass";
+        console.log(username);
+        console.log(password);
         return this.http.post('http://localhost:8080/login', JSON.stringify({ username: username, password: password }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response

@@ -1,9 +1,54 @@
-<p>
-  welcome works!
-</p>
-<p>
-  hahahaha
-</p>
-<button (click)="home()">Home</button>
-<button (click)="startpage()">StartPage</button>
-<router-outlet></router-outlet>
+
+<div class="o-cover" style="background-image: url('/assets/images/court.jpg')">
+      <div class="c-form js-form-login u-display-block u-opacity-1" [formGroup]="loginForm">
+        <div class="c-form__input-group">
+          <i class="material-icons c-form__icon">person</i>
+          <input  class="c-form__input" type="text" placeholder="Username" formControlName="username">
+        </div>
+        <div class="c-form__input-group">
+          <i class="material-icons c-form__icon">lock</i>
+          <input  class="c-form__input" type="password" placeholder="Password" formControlName="password">
+        </div>
+        <div class="c-form__field-group">
+          <button class="c-form__button" type="button" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+        </div>
+        <div class="c-form__field-group c-form__field-group--centered">
+          <span class="c-form__text c-form__text--small">Don't have an account? <a href="#" class="js-switch-register">Register.</a></span>
+        </div>
+      </div>
+
+    <div class="c-form u-display-none js-form-register u-display-none u-opacity-0" [formGroup]="registerForm">
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon" >person</i>
+        <input class="c-form__input" type="text" formControlName="firstName" placeholder="First Name">
+      </div>
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon">person</i>
+        <input class="c-form__input" type="text" formControlName="lastName" placeholder="Last Name">
+      </div>
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon">person</i>
+        <input class="c-form__input" type="text" formControlName="username" placeholder="Username">
+      </div>
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon">mail</i>
+        <input class="c-form__input" type="email" formControlName="email" placeholder="Email">
+      </div>
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon">lock</i>
+        <input class="c-form__input" type="password" formControlName="password" placeholder="Password">
+      </div>
+      <div class="c-form__input-group">
+        <i class="material-icons c-form__icon">lock</i>
+        <input class="c-form__input" type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+      </div>
+      <div class="c-form__field-group">
+        <button class="c-form__button" type="button" (click)="register()" [disabled]="!registerForm.valid">Register</button>
+      </div>
+      <div class="c-form__field-group c-form__field-group--centered">
+        <span class="c-form__text c-form__text--small">Already have an account? <a href="#" class="js-switch-login">Login.</a></span>
+      </div>
+    </div>
+</div>
+
+

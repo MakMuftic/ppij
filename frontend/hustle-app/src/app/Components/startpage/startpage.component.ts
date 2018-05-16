@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import {NgForm} from '@angular/forms';
+
 import { LoginService } from "../../services/login.service";
 import { SportService } from "../../services/sportService";
 import { EventService } from "../../services/eventService";
@@ -12,7 +14,6 @@ import { Sport } from "../../models/sport";
 import { Image } from "../../models/image";
 import { ImageService } from "../../services/imageService";
 
-
 @Component({
   selector: 'app-startpage',
   templateUrl: './startpage.component.html',
@@ -22,14 +23,14 @@ export class StartpageComponent implements OnInit {
   loading = false;
   error = '';
   sports:any[]=[];
-  constructor(private router: Router,private loginServie:LoginService,
+  constructor(private router: Router,private loginService:LoginService,
   private sportService:SportService,private eventService:EventService,
   private venueService:VenueService,private userService:UserService,private imageService:ImageService) { }
 
   ngOnInit() {
   }
   login() {
-    this.loginServie.login("la","la").subscribe(
+    this.loginService.login("la","la").subscribe(
       result => {
                 if (result === true) {
                     console.log(result);
@@ -47,6 +48,11 @@ export class StartpageComponent implements OnInit {
   }
   posts() {
     this.router.navigate(['posts']);
+  }
+  logOut() {
+    this.loginService.logout();
+    this.router.navigate(['welcomepage']);
+
   }
   getSports() {
     this.sportService.getSports()
