@@ -11,10 +11,10 @@ export class EventService {
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
-  getEvents() {
+  getEvents():Promise<any[]>{
     return this.http.get('http://localhost:8080/api/events',this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log("problem"));
+      .then(response => response.json() as any[]);
   }
   getEvent(eventId : number) {
     return this.http.get('http://localhost:8080/api/events/'+eventId,this.options)

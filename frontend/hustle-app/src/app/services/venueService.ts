@@ -11,10 +11,10 @@ export class VenueService {
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
-  getVenues() {
+  getVenues(): Promise<any[]>{
     return this.http.get('http://localhost:8080/api/venues',this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .then(response => response.json() as any[]);
   }
   getVenue(venue:number) {
     return this.http.get('http://localhost:8080/api/venues/'+venue,this.options)

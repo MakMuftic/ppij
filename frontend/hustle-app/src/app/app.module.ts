@@ -26,6 +26,7 @@ import { SportService } from "./services/sportService";
 import { UserService } from "./services/userService";
 import { VenueService } from "./services/venueService";
 import { ImageService } from "./services/imageService";
+import { ViewComponent } from './Components/view/view.component';
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('currentUser')).token;
 }
@@ -41,7 +42,8 @@ export function tokenGetter() {
     ProfileComponent,
     EventListComponent,
     EventfullComponent,
-    SportlistComponent
+    SportlistComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

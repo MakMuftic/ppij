@@ -14,14 +14,14 @@ export class UserService {
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService,private router:Router) {}
 
-  getUsers() {
+  getUsers():Promise<any[]> {
     return this.http.get('http://localhost:8080/api/users',this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .then(response => response.json() as any[]);
   }
-  getUser(user : number){
+  getUser(user : number):Promise<User>{
     return this.http.get('http://localhost:8080/api/users/'+user,this.options)
-      .toPromise();
+      .toPromise().then(response => response.json() as User);
   }
   deleteUser(user : number) {
     return this.http.delete('http://localhost:8080/api/users/'+user,this.options)

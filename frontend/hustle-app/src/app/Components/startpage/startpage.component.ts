@@ -23,6 +23,14 @@ export class StartpageComponent implements OnInit {
   loading = false;
   error = '';
   sports:any[]=[];
+  events:any[]=[];
+  venues:any[]=[];
+  favorites:any[]=[];
+  user:User;
+  type: string ="";
+
+
+
   constructor(private router: Router,private loginService:LoginService,
   private sportService:SportService,private eventService:EventService,
   private venueService:VenueService,private userService:UserService,private imageService:ImageService) { }
@@ -30,23 +38,37 @@ export class StartpageComponent implements OnInit {
   ngOnInit() {
   }
   openProfile() {
-    this.router.navigate(['user',"blabla"]);
+    this.router.navigate(['user',this.localStorageItemName('currentUser')]);
   }
-  events() {
-    this.router.navigate(['events']);
+  toEvents() {
+    this.type="E";
+    this.eventService.getEvents()
+      .then(events => this.events = events);
+    console.log(this.events);
   }
-  posts() {
-    this.router.navigate(['posts']);
+  toVenues() {
+    this.type = "V";
+    this.venueService.getVenues()
+      .then(venues => this.venues = venues);
+    console.log(this.venues);
+  }
+  tofavorites() {
+    this.type =  "F";
+    this.userService.getUser(1).then(user => this.user = user);
+    this.userService.getUserFavouritesVenues(this.user.id);
   }
   logOut() {
     this.loginService.logout();
     this.router.navigate(['welcomepage']);
-
   }
+  getType() {return this.type}
   getSports() {
     this.sportService.getSports()
       //.then(sports => this.sports = sports);
       //console.log(this.sports);
+  }
+  localStorageItemName(id: string): string {
+    return JSON.parse(localStorage.getItem(id)).username;
   }
   ipsrobajmoSve() {
     /*this.imageService.getImage(1).then(response => {

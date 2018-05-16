@@ -1,25 +1,45 @@
 <div class="o-cover" style="background-image: url('/assets/images/court-vector.jpg');">
   <div class="c-sidebar">
     <div class="c-sidebar__user-photo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg')"></div>
-    <div class="c-sidebar__username">mace</div>
+    <div class="c-sidebar__username">{{localStorageItemName("currentUser")}}</div>
     <div class="c-sidebar__label">Events</div>
     <div class="c-sidebar__links">
-      <a href="#" class="c-sidebar__link is-active"><i class="material-icons c-sidebar__icon">event_note</i> All events</a>
-      <a href="#" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">add</i> New event</a>
+      <button type="button" class="c-sidebar__link is-active" (click)="toEvents()"><i class="material-icons c-sidebar__icon" >event_note</i> All events</button>
+      <button type="button"  class="c-sidebar__link"><i class="material-icons c-sidebar__icon">add</i> New event</button>
     </div>
     <div class="c-sidebar__label">Locations</div>
     <div class="c-sidebar__links">
-      <a href="#" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">location_on</i> Venues</a>
-      <a href="#" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">star</i> Favorites</a>
+      <button type="button" class="c-sidebar__link" (click)="toVenues()"><i class="material-icons c-sidebar__icon" >location_on</i> Venues</button>
+      <button type="button"  class="c-sidebar__link" (click)="tofavorites()"><i class="material-icons c-sidebar__icon">star</i> Favorites</button>
     </div>
     <div class="c-sidebar__label">Profile</div>
     <div class="c-sidebar__links">
-      <a href="#" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">settings</i> Settings</a>
-      <a href="#" class="c-sidebar__link"><i class="material-icons c-sidebar__icon" (click)="logOut()">lock</i> Log out</a>
+      <button type="button" class="c-sidebar__link"><i class="material-icons c-sidebar__icon" (click)="openProfile()">settings</i> Settings</button>
+      <a href="#"  class="c-sidebar__link"><i class="material-icons c-sidebar__icon" (click)="logOut()">lock</i> Log out</a>
     </div>
   </div>
   <div class="c-content">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore. Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!
+    <div *ngIf="getType() == ''"> Ovo će se ispisat kada je ništa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore.
+      Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!</div>
+    <div *ngIf="getType() == 'E'">
+      Events:<br/>
+        <div class="?" *ngFor="let event of events">
+          <app-view [objectType]="event" [Type]="getType()"></app-view>
+        </div>
+    </div>
+    <div *ngIf="getType() == 'V'">
+      Venues:<br/>
+      <div class="?" *ngFor="let venue of venues">
+        <app-view [objectType]="venue" [Type]="getType()"></app-view>
+      </div>
+    </div>
+    <div *ngIf="getType() == 'F'">
+     User favorites:<br/>
+      <div class="?" *ngFor="let favorite of favorites">
+        <app-view [objectType]="favorite" [Type]="getType()"></app-view>
+      </div>
+    </div>
   </div>
 </div>
+
 

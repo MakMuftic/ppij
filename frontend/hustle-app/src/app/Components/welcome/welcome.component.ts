@@ -75,7 +75,7 @@ export class WelcomeComponent implements OnInit {
       return false;
     }
   }
-  public localStorageItem(id: string): string {
+  localStorageItem(id: string): string {
     return localStorage.getItem(id);
   }
   checkIfValidField(field: string): boolean {
