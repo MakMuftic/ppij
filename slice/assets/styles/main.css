@@ -531,7 +531,7 @@ input {
 }
 
 a {
-  color: #e9964c;
+  color: #f39c12;
   text-decoration: none;
   outline: none;
 }
@@ -775,7 +775,7 @@ button {
   position: absolute;
   top: -2px;
   left: 10px;
-  color: rgba(233, 150, 76, 0.8);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .c-form__text {
@@ -787,7 +787,7 @@ button {
 }
 
 .c-form__button {
-  background-color: #e9964c;
+  background-color: #f39c12;
   border: none;
   width: 100%;
   border-radius: 20px;
@@ -802,7 +802,7 @@ button {
 }
 
 .c-form__button:hover {
-  background-color: #ca7d38;
+  background-color: #bd7c15;
 }
 
 .o-preloader {
@@ -826,8 +826,92 @@ button {
   height: 50px;
   border-radius: 50%;
   border: 6px solid rgba(255, 255, 255, 0.8);
-  border-top-color: #e9964c;
+  border-top-color: #f39c12;
   -webkit-animation: rotate 0.8s infinite linear;
        -o-animation: rotate 0.8s infinite linear;
           animation: rotate 0.8s infinite linear;
+}
+
+.c-sidebar {
+  height: 100vh;
+  max-width: 200px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #2e3030;
+  padding: 20px 0;
+}
+
+.c-sidebar__user-photo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+}
+
+.c-sidebar__username {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.c-sidebar__links {
+  padding: 0 10px;
+}
+
+.c-sidebar__link {
+  display: block;
+  width: 100%;
+  color: #eee;
+  padding: 10px 20px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  font-size: 14px;
+}
+
+.c-sidebar__link:hover {
+  background-color: #f39c12;
+  text-decoration: none;
+  color: #fff;
+}
+
+.c-sidebar__link:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.c-sidebar__link.is-active {
+  background-color: #f39c12;
+  text-decoration: none;
+  color: #fff;
+}
+
+.c-sidebar__icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  font-size: 20px;
+  display: inline-block;
+  padding-bottom: 1px;
+}
+
+.c-sidebar__label {
+  display: block;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.c-content {
+  color: white;
+  padding-left: 200px;
+  max-width: 100%;
+  width: 100%;
 }
