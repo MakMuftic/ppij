@@ -13,9 +13,7 @@ export class LoginService {
         this.token = currentUser && currentUser.token;
     }
 
-    login(username: string, password: string): Observable<boolean> {
-        console.log(username);
-        console.log(password);
+    login(username: string, password: string) {
         return this.http.post('http://localhost:8080/login', JSON.stringify({ username: username, password: password }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -23,15 +21,13 @@ export class LoginService {
                 if (token) {
                     // set token property
                     this.token = token;
-
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
 
                     // return true to indicate successful login
-                    return true;
                 } else {
                     // return false to indicate failed login
-                    return false;
+                     throw new Error("Problem s podacima ");
                 }
             });
     }

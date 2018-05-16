@@ -29,17 +29,6 @@ export class StartpageComponent implements OnInit {
 
   ngOnInit() {
   }
-  login() {
-    this.loginService.login("la","la").subscribe(
-      result => {
-                if (result === true) {
-                    console.log(result);
-                } else {
-                    console.log("problem")
-                }
-            }
-    );
-  }
   openProfile() {
     this.router.navigate(['user',"blabla"]);
   }

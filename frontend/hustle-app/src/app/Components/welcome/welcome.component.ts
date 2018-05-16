@@ -25,10 +25,18 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.initForms();
+    localStorage.setItem("loginError", "N");
+    localStorage.setItem("registerError", "N")
   }
-  register(firstName,lastName,username,email,pass) {
-    let user = new User(username,firstName,lastName,email,"","",null,null,false);
-    this.userService.registerUser(user,pass);
+  register() {
+    this.username = this.registerForm.get("username").value;
+    this.pass = this.registerForm.get("password").value;
+    let firstName = this.registerForm.get("firstName").value;
+    let lastName = this.registerForm.get("lastName").value;
+    let email = this.registerForm.get("email").value;
+    let user = new User(this.username,firstName,lastName,email,"","",null,null,false);
+    this.userService.registerUser(user,this.pass).toPromise().then(response => this.startpage() &&
+      localStorage.setItem("loginError", "N") ,err => localStorage.setItem("loginError", "Y") && this.home());;
     this.startpage()
   }
   startpage() {
@@ -40,13 +48,11 @@ export class WelcomeComponent implements OnInit {
   login() {
     this.username = this.loginForm.get("username").value;
     this.pass = this.loginForm.get("password").value;
-    if(this.loginService.login(this.username,this.pass)) {
-      this.startpage();
-    } else {
-      console.log("Neuspjelo")
-    }
-    
+    this.loginService.login(this.username,this.pass).toPromise().then(response => this.startpage() &&
+      localStorage.setItem("loginError", "N") ,err => localStorage.setItem("loginError", "Y") && this.home());
+
   }
+
   initForms() {
     this.loginForm = this.fb.group({
       'username': ['', Validators.required],
@@ -57,7 +63,7 @@ export class WelcomeComponent implements OnInit {
       'lastName': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(13)]],
       'username': ['', [Validators.required, Validators.email]],
       'email': ['', Validators.required],
-      'password': ['', [Validators.required, Validators.minLength(6), Validators.maxLength(13)]],
+      'password': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       'confirmPassword': ['', Validators.required]
     });
   }
@@ -69,12 +75,12 @@ export class WelcomeComponent implements OnInit {
       return false;
     }
   }
-  checkIfValidField(field: string,type:string): boolean {
-    if(type == "L") {
+  public localStorageItem(id: string): string {
+    return localStorage.getItem(id);
+  }
+  checkIfValidField(field: string): boolean {
       return !this.loginForm.controls[field].valid && this.loginForm.controls[field].touched;
-    } else {
-      return !this.registerForm.controls[field].valid && this.registerForm.controls[field].touched;
-    }
+
   }
 
 }

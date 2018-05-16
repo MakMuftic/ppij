@@ -5,13 +5,14 @@ import {LoginService} from "./login.service";
 import { User } from "../models/user";
 import { Venue } from "../models/venue";
 import 'rxjs/add/operator/map'
+import {Router} from "@angular/router";
 
 
 @Injectable()
 export class UserService {
   headers = new Headers({ 'Authorization': 'Bearer ' + this.loginService.token,"Content-Type":"application/json"});
   options = new RequestOptions({ headers: this.headers });
-  constructor(private http:Http,private loginService:LoginService) {}
+  constructor(private http:Http,private loginService:LoginService,private router:Router) {}
 
   getUsers() {
     return this.http.get('http://localhost:8080/api/users',this.options)
@@ -29,8 +30,8 @@ export class UserService {
   }
   registerUser(user : User,password:string) {
     return this.http.post('http://localhost:8080/api/users/',JSON.stringify({user:user,password:password}),this.options)
-      .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .map((response:Response) => { this.loginService.login(user.userName,password) && localStorage.setItem("loginError", "N") && this.router.navigate(['startpage']),err => localStorage.setItem("registerError", "Y")
+      });
   }
   updateUser(user : User) {
     return this.http.put('http://localhost:8080/api/users/'+user.id,JSON.stringify(user),this.options)
