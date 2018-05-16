@@ -94,45 +94,49 @@ __webpack_require__(2);
   var loginForm = document.querySelector('.js-form-login');
   var registerForm = document.querySelector('.js-form-register');
 
-  switchRegister.addEventListener('click', function () {
-    loginForm.classList.add('u-animation--fade-out-down');
+  if (switchRegister) {
+    switchRegister.addEventListener('click', function () {
+      loginForm.classList.add('u-animation--fade-out-down');
 
-    registerForm.classList.remove('u-display-none');
-    registerForm.classList.add('u-animation--fade-in-up');
+      registerForm.classList.remove('u-display-none');
+      registerForm.classList.add('u-animation--fade-in-up');
 
-    setTimeout(function () {
-      loginForm.classList.remove('u-display-block');
-      loginForm.classList.remove('u-opacity-1');
-      loginForm.classList.add('u-display-none');
-      loginForm.classList.add('u-opacity-0');
-      loginForm.classList.remove('u-animation--fade-out-down');
+      setTimeout(function () {
+        loginForm.classList.remove('u-display-block');
+        loginForm.classList.remove('u-opacity-1');
+        loginForm.classList.add('u-display-none');
+        loginForm.classList.add('u-opacity-0');
+        loginForm.classList.remove('u-animation--fade-out-down');
 
-      registerForm.classList.add('u-display-block');
-      registerForm.classList.add('u-opacity-1');
-      registerForm.classList.remove('u-opacity-0');
-      registerForm.classList.remove('u-animation--fade-in-up');
-    }, 500);
-  });
+        registerForm.classList.add('u-display-block');
+        registerForm.classList.add('u-opacity-1');
+        registerForm.classList.remove('u-opacity-0');
+        registerForm.classList.remove('u-animation--fade-in-up');
+      }, 500);
+    });
+  }
 
-  switchLogin.addEventListener('click', function () {
-    registerForm.classList.add('u-animation--fade-out-down');
+  if (switchLogin) {
+    switchLogin.addEventListener('click', function () {
+      registerForm.classList.add('u-animation--fade-out-down');
 
-    loginForm.classList.remove('u-display-none');
-    loginForm.classList.add('u-animation--fade-in-up');
+      loginForm.classList.remove('u-display-none');
+      loginForm.classList.add('u-animation--fade-in-up');
 
-    setTimeout(function () {
-      registerForm.classList.remove('u-display-block');
-      registerForm.classList.remove('u-opacity-1');
-      registerForm.classList.add('u-display-none');
-      registerForm.classList.add('u-opacity-0');
-      registerForm.classList.remove('u-animation--fade-out-down');
+      setTimeout(function () {
+        registerForm.classList.remove('u-display-block');
+        registerForm.classList.remove('u-opacity-1');
+        registerForm.classList.add('u-display-none');
+        registerForm.classList.add('u-opacity-0');
+        registerForm.classList.remove('u-animation--fade-out-down');
 
-      loginForm.classList.add('u-display-block');
-      loginForm.classList.add('u-opacity-1');
-      loginForm.classList.remove('u-opacity-0');
-      loginForm.classList.remove('u-animation--fade-in-up');
-    }, 500);
-  });
+        loginForm.classList.add('u-display-block');
+        loginForm.classList.add('u-opacity-1');
+        loginForm.classList.remove('u-opacity-0');
+        loginForm.classList.remove('u-animation--fade-in-up');
+      }, 500);
+    });
+  }
 })(window.document);
 
 /***/ }),
