@@ -23,8 +23,6 @@ export class LoginService {
                     this.token = token;
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
-
-                    // return true to indicate successful login
                 } else {
                     // return false to indicate failed login
                      throw new Error("Problem s podacima ");

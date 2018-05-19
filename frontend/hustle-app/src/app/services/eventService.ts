@@ -14,26 +14,27 @@ export class EventService {
   getEvents():Promise<any[]>{
     return this.http.get('http://localhost:8080/api/events',this.options)
       .toPromise()
-      .then(response => response.json() as any[]);
+      .then(response => response.json() as any[],err => {throw new Error("Dohvaćanje evenata nije uspjelo")});
   }
-  getEvent(eventId : number) {
+  getEvent(eventId : number):Promise<Event> {
     return this.http.get('http://localhost:8080/api/events/'+eventId,this.options)
-      .toPromise();
+      .toPromise()
+      .then(response => response.json() as Event,err => {throw new Error("Dohvaćanje eventa nije uspjelo")})
   }
   deleteEvent(eventId : number) {
     return this.http.delete('http://localhost:8080/api/events/'+eventId,this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log("problem"))
+      .then(response => console.log(response),err => {throw new Error("Brisanje nije uspjelo ")} );
   }
   updateEvent(event : Event) {
     return this.http.put('http://localhost:8080/api/events/'+event.id,JSON.stringify(event),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw new Error("Ažuriranje podataka nije uspjelo ")})
   }
   addEvent(event : Event) {
     return this.http.post('http://localhost:8080/api/events',JSON.stringify(event),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw new Error("Dodavanje podatka nije uspjelo ")})
   }
 
 }

@@ -44,18 +44,18 @@ export class StartpageComponent implements OnInit {
     this.type="E";
     this.eventService.getEvents()
       .then(events => this.events = events);
-    console.log(this.events);
   }
   toVenues() {
     this.type = "V";
     this.venueService.getVenues()
       .then(venues => this.venues = venues);
-    console.log(this.venues);
   }
   tofavorites() {
     this.type =  "F";
     this.userService.getUser(1).then(user => this.user = user);
-    this.userService.getUserFavouritesVenues(this.user.id);
+    this.userService.getUserFavouritesVenues(this.user.id)
+      .then(favorites => this.favorites = favorites);
+    console.log(this.favorites);
   }
   logOut() {
     this.loginService.logout();

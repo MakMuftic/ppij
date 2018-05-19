@@ -17,16 +17,16 @@ export class UserService {
   getUsers():Promise<any[]> {
     return this.http.get('http://localhost:8080/api/users',this.options)
       .toPromise()
-      .then(response => response.json() as any[]);
+      .then(response => response.json() as any[],err => {throw new Error("Dohvaćanje svih usera nije uspjelo")});
   }
   getUser(user : number):Promise<User>{
     return this.http.get('http://localhost:8080/api/users/'+user,this.options)
-      .toPromise().then(response => response.json() as User);
+      .toPromise().then(response => response.json() as User,err => {throw new Error("Dohvaćanje usera s id-jem:" + user +" nije uspjelo")});
   }
   deleteUser(user : number) {
     return this.http.delete('http://localhost:8080/api/users/'+user,this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw new Error("Brisanje usera nije uspjelo")})
   }
   registerUser(user : User,password:string) {
     return this.http.post('http://localhost:8080/api/users/',JSON.stringify({user:user,password:password}),this.options)
@@ -36,22 +36,22 @@ export class UserService {
   updateUser(user : User) {
     return this.http.put('http://localhost:8080/api/users/'+user.id,JSON.stringify(user),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw new Error("Ažuriranje usera nije uspjelo")})
   }
-  getUserFavouritesVenues(user:number) {
+  getUserFavouritesVenues(user:number):Promise<any[]> {
     return this.http.get('http://localhost:8080/api/users/'+user+'/favourites',this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .then(response => response.json() as any[],err => {throw new Error("Dohvaćanje venues koji su favorite za usera  nije uspjelo")});
   }
   addUserFavouritesVenues(user:number,venue:number) {
     return this.http.post('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .then(response => console.log(response),err => {throw new Error("Dodavanje venue u userove favorite nije uspjelo")});
   }
   deleteUserFavouritesVenues(user:number,venue:number) {
     return this.http.delete('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""));
+      .then(response => console.log(response),err => {throw new Error("Brisanje venuea iz userovih favorita nije uspjelo")});
   }
 
 }

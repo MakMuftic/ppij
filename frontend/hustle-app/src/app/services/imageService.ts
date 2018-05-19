@@ -11,13 +11,15 @@ export class ImageService {
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http,private loginService:LoginService) {}
 
-  getImages() {
+  getImages():Promise<any[]>{
     return this.http.get('http://localhost:8080/api/images',this.options)
-      .toPromise();
+      .toPromise()
+      .then(response => response.json() as any[],err => {throw new Error("Dohvaćanje slika nije uspjelo")});
   }
-  getImage(id : number) {
+  getImage(id : number):Promise<Image> {
     return this.http.get('http://localhost:8080/api/images/'+id,this.options)
-      .toPromise();
+      .toPromise()
+      .then(response => response.json() as Image,err => {throw  new Error("Dovaćanje slike nije uspjelo")});
   }
   deleteImage(image : number) {
     return this.http.delete('http://localhost:8080/api/images/'+image,this.options)
@@ -27,12 +29,12 @@ export class ImageService {
   updateImage(image : number) {
     return this.http.put('http://localhost:8080/api/images/'+image,JSON.stringify(image),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw new Error("Brisanje slike nije uspjelo")})
   }
   addImage(image : Image) {
     return this.http.post('http://localhost:8080/api/images',JSON.stringify(image),this.options)
       .toPromise()
-      .then(response => console.log(response),err => console.log(""))
+      .then(response => console.log(response),err => {throw  new Error("Dodavanje slike nije uspjelo")})
   }
 
 }
