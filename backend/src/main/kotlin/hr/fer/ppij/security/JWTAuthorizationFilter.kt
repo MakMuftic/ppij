@@ -32,7 +32,7 @@ class JWTAuthorizationFilter(authManager: AuthenticationManager) : BasicAuthenti
         }
         try {
             val authentication = getAuthentication(req)
-            SecurityContextHolder.getContext().authentication = authentication
+            SecurityContextHolder.getContext().authentication = authentication!!
             chain.doFilter(req, res)
         } catch (e: ExpiredJwtException) {
             res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.")

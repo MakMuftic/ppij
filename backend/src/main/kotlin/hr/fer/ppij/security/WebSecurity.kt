@@ -1,5 +1,6 @@
 package hr.fer.ppij.security
 
+import hr.fer.ppij.repository.UserRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -20,7 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurity(
         private val userDetailsService: UserDetailsService,
-        private val bCryptPasswordEncoder: BCryptPasswordEncoder
+        private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+        private val userRepository: UserRepository
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
@@ -36,7 +38,7 @@ class WebSecurity(
                 .antMatchers("/api/**").authenticated()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .and()
-                .addFilter(JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(JWTAuthenticationFilter(authenticationManager(), userRepository))
                 .addFilter(JWTAuthorizationFilter(authenticationManager()))
     }
 

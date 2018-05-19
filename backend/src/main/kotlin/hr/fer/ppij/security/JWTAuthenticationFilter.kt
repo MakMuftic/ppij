@@ -2,6 +2,7 @@ package hr.fer.ppij.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import hr.fer.ppij.model.LoginDetails
+import hr.fer.ppij.repository.UserRepository
 import hr.fer.ppij.security.SecurityConstants.ACEH
 import hr.fer.ppij.security.SecurityConstants.EXPIRATION_TIME
 import hr.fer.ppij.security.SecurityConstants.HEADER_STRING
@@ -24,7 +25,8 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JWTAuthenticationFilter(
-        private val authenticateManager: AuthenticationManager
+        private val authenticateManager: AuthenticationManager,
+        private val userRepository: UserRepository
 ) : UsernamePasswordAuthenticationFilter() {
 
 
@@ -55,8 +57,11 @@ class JWTAuthenticationFilter(
                 .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact()
-        //response.outputStream.print((auth.principal as User).toString())
+
+        val user = userRepository.findByUserName((auth.principal as User).username).get()
+
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token)
         response.addHeader(ACEH, HEADER_STRING)
+        response.addHeader("X-USER-ID", user.id.toString())
     }
 }
