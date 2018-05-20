@@ -26,3 +26,6 @@ You can inspect exposed api thought swagger UI. It is served on _http://localhos
 + Image is created and saved by uploading file to _/api/images_ endpoint.
 + Image is shown by invoking _/api/images/show/image_name_from_db_.
 
+#### Facebook chatbot
+_Verify token_ = yVVtz7TFrsajM7erVz8p
+
