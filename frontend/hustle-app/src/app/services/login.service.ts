@@ -18,11 +18,12 @@ export class LoginService {
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let token = response.headers.get("Authorization");
+                let id = response.headers.get("X-USER-ID");
                 if (token) {
                     // set token property
                     this.token = token;
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token,id:id }));
                 } else {
                     // return false to indicate failed login
                      throw new Error("Problem s podacima ");

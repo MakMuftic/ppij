@@ -52,8 +52,8 @@ export class StartpageComponent implements OnInit {
   }
   tofavorites() {
     this.type =  "F";
-    this.userService.getUser(1).then(user => this.user = user);
-    this.userService.getUserFavouritesVenues(this.user.id)
+    this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(user => this.user = user);
+    this.userService.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id)
       .then(favorites => this.favorites = favorites);
     console.log(this.favorites);
   }
