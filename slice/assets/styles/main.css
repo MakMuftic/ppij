@@ -840,6 +840,7 @@ button {
   margin-bottom: 15px;
   font-weight: 300;
   display: inline-block;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .c-form__upload {
