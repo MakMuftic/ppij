@@ -26,7 +26,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     this.initForms();
     localStorage.setItem("loginError", "N");
-    localStorage.setItem("registerError", "N")
+    localStorage.setItem("registerError", "N");
   }
   register() {
     this.username = this.registerForm.get("username").value;

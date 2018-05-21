@@ -11,6 +11,9 @@ export class AppComponent implements OnInit {
   title = 'app';
   ngOnInit() {
    this.formAnimation();
+    if(localStorage.getItem('currentUser') !== null) {
+      this.router.navigate(['startpage']);
+    }
   }
   constructor(private router:Router ) {}
 
