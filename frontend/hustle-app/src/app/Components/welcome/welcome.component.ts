@@ -26,7 +26,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     this.initForms();
     localStorage.setItem("loginError", "N");
-    localStorage.setItem("registerError", "N")
+    localStorage.setItem("registerError", "N");
   }
   register() {
     this.username = this.registerForm.get("username").value;
@@ -78,8 +78,12 @@ export class WelcomeComponent implements OnInit {
   localStorageItem(id: string): string {
     return localStorage.getItem(id);
   }
-  checkIfValidField(field: string): boolean {
+  checkIfValidField(field: string,type:string): boolean {
+    if (type == "L") {
       return !this.loginForm.controls[field].valid && this.loginForm.controls[field].touched;
+    } else {
+      return !this.registerForm.controls[field].valid && this.registerForm.controls[field].touched;
+    }
 
   }
 

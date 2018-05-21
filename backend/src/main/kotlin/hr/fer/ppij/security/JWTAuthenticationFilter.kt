@@ -61,7 +61,7 @@ class JWTAuthenticationFilter(
         val user = userRepository.findByUserName((auth.principal as User).username).get()
 
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token)
-        response.addHeader(ACEH, HEADER_STRING)
+        response.addHeader(ACEH, "$HEADER_STRING, X-USER-ID")
         response.addHeader("X-USER-ID", user.id.toString())
     }
 }
