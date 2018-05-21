@@ -711,7 +711,7 @@ button {
   display: flex;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .c-form {
@@ -757,6 +757,10 @@ button {
 
 .c-form__input-group:not(:last-child) {
   margin-bottom: 30px;
+}
+
+.c-form__input-group--no-border:after {
+  content: none;
 }
 
 .c-form__field-group {
@@ -815,6 +819,32 @@ button {
 
 .c-form__button:hover {
   background-color: #bd7c15;
+}
+
+.c-form__select {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+  height: auto;
+  font-weight: 300;
+}
+
+.c-form__select option {
+  background-color: #2e3030;
+  padding: 10px;
+}
+
+.c-form__label {
+  margin-bottom: 15px;
+  font-weight: 300;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.c-form__upload {
+  display: block;
 }
 
 .o-preloader {
@@ -885,6 +915,7 @@ button {
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .c-sidebar__link:hover {
@@ -980,7 +1011,7 @@ button {
 .c-card__title {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #bd7c15;
+  color: #f39c12;
   font-weight: 600;
 }
 
@@ -994,7 +1025,7 @@ button {
 .c-card__icon {
   font-size: 28px;
   vertical-align: middle;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .c-card__date {

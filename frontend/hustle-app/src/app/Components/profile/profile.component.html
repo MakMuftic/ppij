@@ -1,35 +1,39 @@
-<div class="c-form c-form--big" [formGroup]="updateForm">
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('firstName','U')"> First name is invalid</span>
-  <div class="c-form__input-group">
-    <i class="material-icons c-form__icon" >person</i>
-    <input class="c-form__input" type="text" formControlName="firstName" placeholder="First Name">
-  </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('lastName','U')"> Last name is invalid</span>
+<div class="c-form c-form--big" >
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">person</i>
-    <input class="c-form__input" type="text" formControlName="lastName" placeholder="Last Name">
+    <input class="c-form__input" type="text" placeholder="First Name" [(ngModel)]="user.firstName" value="{{user.firstName}}">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('username','U')"> Username is invalid</span>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">person</i>
-    <input class="c-form__input" type="text" formControlName="username" placeholder="Username">
+    <input class="c-form__input" type="text" placeholder="Last Name" [(ngModel)]="user.lastName" value="{{user.lastName}}">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('email','U')"> Email is invalid</span>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="Username" [(ngModel)]="user.userName" value="{{user.userName}}">
+  </div>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">mail</i>
-    <input class="c-form__input" type="email" formControlName="email" placeholder="Email">
+    <input class="c-form__input" type="email" placeholder="Email" [(ngModel)] ="user.email" value="{{user.email}}">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('password','U')"> Password  is invalid</span>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">lock</i>
-    <input class="c-form__input" type="password" formControlName="password" placeholder="Password" #password>
+    <input class="c-form__input" type="password" placeholder="Password" [(ngModel)] ="pass">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('confirmPassword','U')"> Passwords are not the same</span>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">lock</i>
-    <input class="c-form__input" type="password" formControlName="confirmPassword" placeholder="Confirm Password" #confPassword>
+    <input class="c-form__input" type="password" placeholder="Confirm Password">
+  </div>
+  <div class="c-form__input-group c-form__input-group--no-border">
+    <span class="c-form__label">Sports</span>
+    <select class="c-form__select" multiple [(ngModel)]="selectedSports">
+      <option *ngFor="let sport of sports" value="sport.id">{{sport.name}}</option>
+    </select>
+  </div>
+  <div class="c-form__input-group c-form__input-group--no-border">
+    <span class="c-form__label">Profile Image</span>
+    <input class="c-form__upload" type="file" accept="image/*" [(ngModel)]="pictureUrl">
   </div>
   <div class="c-form__field-group">
-    <button class="c-form__button" type="button" (click)="update()" [disabled]="!updateForm.valid">Update</button>
+    <button class="c-form__button" (click)="update()" type="button">Save</button>
   </div>
 </div>

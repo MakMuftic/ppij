@@ -17,6 +17,10 @@ import {SportService} from "../../services/sportService";
 export class ProfileComponent implements OnInit {
   updateForm:FormGroup;
   sports:any[];
+  user:User;
+  pass:string;
+  pictureUrl:File;
+  selectedSports:number[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private sportService:SportService) {
   }
@@ -26,6 +30,9 @@ export class ProfileComponent implements OnInit {
     this.sportService.getSports().then(
       sports => this.sports = sports
     );
+    this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(
+      user => this.user = user);
+
   }
   initForms() {
     this.updateForm = this.fb.group({
@@ -34,7 +41,9 @@ export class ProfileComponent implements OnInit {
       'username': ['', [Validators.required]],
       'email': ['', Validators.required],
       'password': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-      'confirmPassword': ['', Validators.required]
+      'confirmPassword': ['', Validators.required],
+      'sports':[''],
+      'image':['']
     });
   }
   checkIfValidField(field: string,type:string): boolean {
@@ -42,5 +51,7 @@ export class ProfileComponent implements OnInit {
 
   }
   update() {
+    console.log(this.user.firstName);
+    console.log(this.selectedSports);
   }
 }
