@@ -56,8 +56,19 @@
             <i class="material-icons c-form__icon">lock</i>
             <input class="c-form__input" type="password" placeholder="Confirm Password">
           </div>
-          <div class="c-form__input-group">
-            <select name="" id=""></select>
+          <div class="c-form__input-group c-form__input-group--no-border">
+            <span class="c-form__label">Sports</span>
+            <select class="c-form__select" multiple>
+              <option value="nogomet">Nogomet</option>
+              <option value="kosarka">Košarka</option>
+              <option value="odbojka">Odbojka</option>
+              <option value="vaterpolo">Vaterpolo</option>
+              <option value="rukomet">Rukomet</option>
+            </select>
+          </div>
+          <div class="c-form__input-group c-form__input-group--no-border">
+            <span class="c-form__label">Profile Image</span>
+            <input class="c-form__upload" type="file" accept="image/*">
           </div>
           <div class="c-form__field-group">
             <button class="c-form__button" type="button">Save</button>
