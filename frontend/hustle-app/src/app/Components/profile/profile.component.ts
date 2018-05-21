@@ -10,6 +10,7 @@ import {init} from "protractor/built/launcher";
 import {SportService} from "../../services/sportService";
 import {Sport} from "../../models/sport";
 import {ImageService} from "../../services/imageService";
+import {Image} from "../../models/image";
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +21,10 @@ export class ProfileComponent implements OnInit {
   updateForm:FormGroup;
   sports:any[];
   user:User;
+  image:Image;
   pass:string;
-  pictureUrl:File;
+  userSports:Sport[];
+  pictureUrl:any;
   selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private sportService:SportService,
@@ -34,7 +37,7 @@ export class ProfileComponent implements OnInit {
     );
     this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(
       user => this.user = user);
-    console.log(this.user.firstName);
+
 
   }
 
@@ -48,8 +51,15 @@ export class ProfileComponent implements OnInit {
       this.pictureUrl=file;
     }
   }
+  checkIfSelected(sport:Sport) {
+    return this.user.sports.indexOf(sport) != -1 ;
+  }
   update() {
     this.user.sports=this.selectedSports;
+    this.imageService.addImage(this.pictureUrl).then(
+      image => this.image = image
+    );
+    this.user.image = this.image;
     this.userService.updateUser(this.user);
 
   }

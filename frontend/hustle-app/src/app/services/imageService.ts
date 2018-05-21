@@ -31,10 +31,13 @@ export class ImageService {
       .toPromise()
       .then(response => console.log(response),err => {throw new Error("Brisanje slike nije uspjelo")})
   }
-  addImage(image : Image) {
-    return this.http.post('http://localhost:8080/api/images',JSON.stringify(image),this.options)
+  addImage(image:any):Promise<Image> {
+    let form = new FormData();
+    form.append("file1",image);
+    return this.http.post('http://localhost:8080/api/images',form,
+      new RequestOptions({ headers: new Headers({ 'Authorization': 'Bearer ' + this.loginService.token,"Content-Type":"undefined"}) }))
       .toPromise()
-      .then(response => console.log(response),err => {throw  new Error("Dodavanje slike nije uspjelo")})
+      .then(response => response.json() as Image,err => {throw  new Error("Dodavanje slike nije uspjelo")})
   }
 
 }
