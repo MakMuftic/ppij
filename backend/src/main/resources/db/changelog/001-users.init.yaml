@@ -22,12 +22,12 @@ databaseChangeLog:
                   name: first_name
                   type: varchar(100)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                     name: last_name
                     type: varchar(100)
                     constraints:
-                      nullable: false
+                      nullable: true
               - column:
                   name: email
                   type: varchar(100)
@@ -42,12 +42,12 @@ databaseChangeLog:
                   name: phone_number
                   type: varchar(100)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: about_me_description
                   type: varchar(400)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: image_id
                   type: bigint

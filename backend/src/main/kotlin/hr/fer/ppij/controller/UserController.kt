@@ -6,9 +6,7 @@ import hr.fer.ppij.model.User
 import hr.fer.ppij.repository.FavouriteRepository
 import hr.fer.ppij.repository.UserRepository
 import hr.fer.ppij.repository.VenueRepository
-import hr.fer.ppij.security.AuthoritiesConstants
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @ApiController
@@ -46,13 +44,6 @@ class UserController(
             val user: User,
             val password: String
     )
-
-    @PostMapping("/users")
-    fun saveUser(@RequestBody user: UserPasswordDto): User {
-        val newUser = user.user
-        newUser.password = user.password
-        return userRepository.save(newUser)
-    }
 
     @PutMapping("/users/{userId}")
     fun updateUser(@PathVariable userId: Long, @RequestBody user: User): ResponseEntity<*> {
@@ -113,4 +104,7 @@ class UserController(
         return ResponseEntity.ok(favouriteRepository.delete(Favourite(userId, venueId)))
     }
 
+    @GetMapping("/users/")
+    fun doesUsernameExists(@RequestParam("username") username: String) =
+            userRepository.findByUserName(username).isPresent
 }
