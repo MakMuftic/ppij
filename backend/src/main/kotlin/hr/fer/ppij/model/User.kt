@@ -16,7 +16,7 @@ data class User(
         var email: String,
         @JsonIgnore
         var password:String? = null,
-        var phoneNumber: String,
+        var phoneNumber: String? = null,
         var aboutMeDescription: String,
         @ManyToMany(fetch = FetchType.LAZY, cascade = [(CascadeType.MERGE)])
         @JoinTable(name = "user_sports",
@@ -26,7 +26,7 @@ data class User(
         @ManyToOne
         @JoinColumn(name = "image_id")
         var image: Image? = null,
-        var admin: Boolean
+        var admin: Boolean? = false
 ) {
     fun toDto(): BasicUserDto = BasicUserDto(
             id!!,
