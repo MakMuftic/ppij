@@ -39,13 +39,8 @@ export class StartpageComponent implements OnInit {
   }
 
   openProfile() {
-    if(localStorage.getItem("currentUser") !== null) {
-      this.router.navigate(['user',JSON.parse(localStorage.getItem('currentUser')).username]);
-    } else {
-      this.router.navigate(['welcomepage']);
+    this.type = "P";
     }
-
-  }
   toEvents() {
     if(localStorage.getItem("currentUser") !== null) {
       this.type="E";
@@ -65,6 +60,9 @@ export class StartpageComponent implements OnInit {
       this.router.navigate(['welcomepage']);
     }
 
+  }
+  create() {
+    this.type="C";
   }
   tofavorites() {
     if(localStorage.getItem("currentUser") !== null) {

@@ -1,0 +1,19 @@
+<div class="c-form c-form--big" [formGroup]="createForm">
+  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('name')"> Name is required</span>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon" >person</i>
+    <input class="c-form__input" type="text" formControlName="name" placeholder="Name of event">
+  </div>
+  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('description')"> Description is required</span>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" formControlName="lastName" placeholder="">
+  </div>
+  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('date')"> Date is required</span>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" formControlName="lastName" placeholder="Last Name">
+  </div>
+  <button class="c-form__button" type="button" (click)="create()" [disabled]="!createForm.valid">Update</button>
+</div>
+

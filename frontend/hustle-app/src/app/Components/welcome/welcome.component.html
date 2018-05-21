@@ -53,13 +53,13 @@
       <i class="material-icons c-form__icon">lock</i>
       <input class="c-form__input" type="password" formControlName="password" placeholder="Password" #password>
     </div>
-    <span class="c-form__text c-form__text--small" *ngIf="checkIfPasswordMatch(password.value,confPassword.value)"> Passwords are not the same</span>
+    <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('confirmPassword','R')"> Passwords are not the same</span>
     <div class="c-form__input-group">
       <i class="material-icons c-form__icon">lock</i>
       <input class="c-form__input" type="password" formControlName="confirmPassword" placeholder="Confirm Password" #confPassword>
     </div>
     <div class="c-form__field-group">
-      <button class="c-form__button" type="button" (click)="register()" [disabled]="!registerForm.valid">Register</button>
+      <button class="c-form__button" type="button" (click)="register()">Register</button>
     </div>
     <div class="c-form__field-group c-form__field-group--centered">
       <span class="c-form__text c-form__text--small">Already have an account? <a href="#" class="js-switch-login">Login.</a></span>

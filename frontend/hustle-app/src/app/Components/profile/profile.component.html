@@ -1,1 +1,41 @@
-<p>Profil</p>
+<div class="c-form c-form--big" >
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="First Name"  [(ngModel)]="user.firstName" value="{{user.firstName}}">
+  </div>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="Last Name"  [(ngModel)]="user.lastName" value="{{user.lastName}}">
+  </div>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="Username"  [(ngModel)]="user.userName" value="{{user.userName}}">
+  </div>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="Description"  [(ngModel)]="user.aboutMeDescription" value="{{user.aboutMeDescription}}">
+  </div>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">person</i>
+    <input class="c-form__input" type="text" placeholder="Phone number"  [(ngModel)]="user.phoneNumber" value="{{user.phoneNumber}}">
+  </div>
+  <div class="c-form__input-group">
+    <i class="material-icons c-form__icon">mail</i>
+    <input class="c-form__input" type="email" placeholder="Email"   [(ngModel)] ="user.email" value="{{user.email}}">
+  </div>
+  <div class="c-form__input-group c-form__input-group--no-border">
+    <span class="c-form__label">Sports</span>
+    <select class="c-form__select" multiple name="selectedSports" [(ngModel)] = "selectedSports">
+      <option *ngFor="let sport of sports" [ngValue]="sport">
+        {{ sport.name }}
+      </option>
+    </select>
+  </div>
+  <div class="c-form__input-group c-form__input-group--no-border">
+    <span class="c-form__label">Profile Image</span>
+    <input class="c-form__upload" id="file" type="file" accept="image/*" (change)="onFileChange($event)" #fileInput>
+  </div>
+  <div class="c-form__field-group">
+    <button class="c-form__button" (click)="update()" type="button">Save</button>
+  </div>
+</div>
