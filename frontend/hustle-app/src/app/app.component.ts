@@ -11,15 +11,18 @@ export class AppComponent implements OnInit {
   title = 'app';
   ngOnInit() {
    this.formAnimation();
+    if(localStorage.getItem('currentUser') !== null) {
+      this.router.navigate(['startpage']);
+    }
   }
   constructor(private router:Router ) {}
 
   formAnimation() {
-    const switchRegister = document.querySelector('.form .js-switch-register');
-    const switchLogin = document.querySelector('.form .js-switch-login');
+    const switchRegister = document.querySelector('.js-switch-register');
+    const switchLogin = document.querySelector('.js-switch-login');
 
-    const loginForm = document.querySelector('.form .js-form-login');
-    const registerForm = document.querySelector('.form .js-form-register');
+    const loginForm = document.querySelector('.js-form-login');
+    const registerForm = document.querySelector('.js-form-register');
 
     if(switchRegister) {
       switchRegister.addEventListener('click', () => {
