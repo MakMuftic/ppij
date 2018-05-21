@@ -5,7 +5,7 @@
     <div class="c-sidebar__label">Events</div>
     <div class="c-sidebar__links">
       <a  style="cursor: pointer;" class="c-sidebar__link is-active" (click)="toEvents()"><i class="material-icons c-sidebar__icon" >event_note</i> All events</a>
-      <a  style="cursor: pointer;" class="c-sidebar__link"><i class="material-icons c-sidebar__icon">add</i> New event</a>
+      <a  style="cursor: pointer;" class="c-sidebar__link" (click)="create()"><i class="material-icons c-sidebar__icon">add</i> New event</a>
     </div>
     <div class="c-sidebar__label">Locations</div>
     <div class="c-sidebar__links">
@@ -21,6 +21,9 @@
   <div class="c-content">
     <div *ngIf="getType() == ''"> Ovo će se ispisat kada je ništa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore.
       Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!</div>
+    <div *ngIf="getType() == 'P'">
+      <app-profile></app-profile>
+    </div>
     <div *ngIf="getType() == 'E'">
       Events:<br/>
         <div class="?" *ngFor="let event of events">
@@ -38,6 +41,9 @@
       <div class="?" *ngFor="let favorite of favorites">
         <app-view [objectType]="favorite" [Type]="getType()"></app-view>
       </div>
+    </div>
+    <div *ngIf="getType() == 'C'">
+      <app-create-event></app-create-event>
     </div>
   </div>
 </div>

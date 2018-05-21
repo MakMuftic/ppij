@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RoutingModule } from "./routing/routing.module";
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { StartpageComponent } from './Components/startpage/startpage.component';
 import { EventsComponent } from './Components/events/events.component';
@@ -27,6 +26,7 @@ import { UserService } from "./services/userService";
 import { VenueService } from "./services/venueService";
 import { ImageService } from "./services/imageService";
 import { ViewComponent } from './Components/view/view.component';
+import { CreateEventComponent } from './Components/create-event/create-event.component';
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('currentUser')).token;
 }
@@ -34,7 +34,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     WelcomeComponent,
     StartpageComponent,
     EventsComponent,
@@ -43,7 +42,8 @@ export function tokenGetter() {
     EventListComponent,
     EventfullComponent,
     SportlistComponent,
-    ViewComponent
+    ViewComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
