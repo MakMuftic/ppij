@@ -1,6 +1,3 @@
-<div class="c-popup js-popup" *ngIf="pop">
-  Information has been saved successfully.
-</div>
 <div class="o-cover" style="background-image: url('/assets/images/court-vector.jpg');">
   <div class="c-sidebar">
     <div class="c-sidebar__user-photo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg')"></div>
@@ -22,6 +19,9 @@
     </div>
   </div>
   <div class="c-content">
+    <div class="c-popup js-popup" *ngIf="pop">
+      Information has been saved successfully.
+    </div>
     <div *ngIf="getType() == ''"> Ovo će se ispisat kada je ništa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore.
       Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!</div>
     <div *ngIf="getType() == 'P'">

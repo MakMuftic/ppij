@@ -45,6 +45,8 @@ export class VenuesViewComponent implements OnInit,OnChanges {
     if(this.checkFav(venueId)) {
       this.userService.deleteUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id,venueId);
     } else {
+      console.log("hahahah");
+      console.log(JSON.parse(localStorage["currentUser"]));
       this.userService.addUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id,venueId);
     }
     this.boolPop = true;
