@@ -6,20 +6,24 @@ import hr.fer.ppij.model.User
 import hr.fer.ppij.repository.FavouriteRepository
 import hr.fer.ppij.repository.UserRepository
 import hr.fer.ppij.repository.VenueRepository
+import hr.fer.ppij.security.AuthoritiesConstants
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
-@ApiController
+@RequestMapping(value = ["/api"])
+@RestController
 class UserController(
         private val userRepository: UserRepository,
         private val favouriteRepository: FavouriteRepository,
         private val venueRepository: VenueRepository
 ) {
     /* BasicUserDto endpoints */
-
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users/basic")
     fun getAllUsersBasicInfo() = userRepository.findAll().map { it.toDto() }
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users/basic/{userId}")
     fun getUserBasicInfoById(@PathVariable userId: Long): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
@@ -29,9 +33,11 @@ class UserController(
     }
     /* User endpoints */
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users")
     fun getAllUsersInfo(): MutableIterable<User> = userRepository.findAll()
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users/{userId}")
     fun getFullUserById(@PathVariable userId: Long): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
@@ -45,6 +51,7 @@ class UserController(
             val password: String
     )
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @PutMapping("/users/{userId}")
     fun updateUser(@PathVariable userId: Long, @RequestBody user: User): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
@@ -65,6 +72,7 @@ class UserController(
         return ResponseEntity.notFound().build()
     }
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @DeleteMapping("/users/{userId}")
     fun deleteUser(@PathVariable userId: Long): ResponseEntity<Void> {
         userRepository.findOne(userId)?.let {
@@ -104,6 +112,7 @@ class UserController(
         return ResponseEntity.ok(favouriteRepository.delete(Favourite(userId, venueId)))
     }
 
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users/")
     fun doesUsernameExists(@RequestParam("username") username: String) =
             userRepository.findByUserName(username).isPresent

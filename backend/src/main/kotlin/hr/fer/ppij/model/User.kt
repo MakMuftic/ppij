@@ -26,7 +26,7 @@ data class User(
         @ManyToOne
         @JoinColumn(name = "image_id")
         var image: Image? = null,
-        var admin: Boolean? = false
+        var admin: Boolean? = true
 ) {
     fun toDto(): BasicUserDto = BasicUserDto(
             id!!,

@@ -28,7 +28,7 @@ class RegisterController(
                     registerWrapper.user.aboutMeDescription,
                     registerWrapper.user.sports,
                     registerWrapper.user.image,
-                    registerWrapper.user.admin
+                    true
             )
     )
 }
