@@ -43,7 +43,7 @@ data class UserWrapper(
         var aboutMeDescription: String?,
         var sports: List<Sport>?,
         var image: Image?,
-        var admin: Boolean?
+        var admin: Boolean
 )
 
 data class RegisterWrapper(
