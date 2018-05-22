@@ -8,16 +8,16 @@
   <br />
   <br />
   <span class="c-form__label">Select a venue where it will be held</span>
-  <select class="c-form__select"  name="selectedVenue" [(ngModel)] = "event.venueId">
-    <option *ngFor="let venue of venues" [value]="venue.id" >
+  <select class="c-form__select"  name="venue" [(ngModel)] = "venue">
+    <option *ngFor="let venue of venues" [ngValue]="venue" >
       {{ venue.name }}
     </option>
   </select>
   <br />
   <br />
-  <span class="c-form__label">Select a sport</span>
-  <select class="c-form__select"  name="selectedSport"  [(ngModel)] = "event.sportId">
-    <option *ngFor="let sport of sports" [value]="sport.id" >
+  <span class="c-form__label">Select sports</span>
+  <select class="c-form__select" multiple name="selectedSports" [(ngModel)] = "selectedSports">
+    <option *ngFor="let sport of sports" [ngValue]="sport">
       {{ sport.name }}
     </option>
   </select>
@@ -26,7 +26,7 @@
   <span class="c-form__label">Date</span>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">date</i>
-    <input class="c-form__input" type="date" placeholder="Date"   [(ngModel)] ="event.email">
+    <input class="c-form__input" type="date" placeholder="Date"   [(ngModel)] ="event.date">
   </div>
   <br />
   <br />

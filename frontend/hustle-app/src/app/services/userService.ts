@@ -6,6 +6,7 @@ import { User } from "../models/user";
 import { Venue } from "../models/venue";
 import 'rxjs/add/operator/map'
 import {Router} from "@angular/router";
+import {Constants} from "../Constants/constants";
 
 
 @Injectable()
@@ -29,14 +30,19 @@ export class UserService {
       .then(response => console.log(response),err => {throw new Error("Brisanje usera nije uspjelo")})
   }
   registerUser(user : User,password:string) {
-    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}),this.options)
+    user.role = false;
+    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}),new RequestOptions({headers:new Headers({ "Content-Type":"application/json"})}))
       .map((response:Response) => { this.loginService.login(user.userName,password) && localStorage.setItem("loginError", "N") && this.router.navigate(['startpage']),err => localStorage.setItem("registerError", "Y")
       });
   }
   updateUser(user : User) {
     return this.http.put('http://localhost:8080/api/users/'+user.id,JSON.stringify(user),this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Ažuriranje usera nije uspjelo")})
+      .then(response => {this.getUser(JSON.parse(localStorage.getItem('currentUser')).id).then(
+        response => Constants.user = response
+      );},err => {throw new Error("Ažuriranje usera nije uspjelo")}).then(
+
+      )
   }
   getUserFavouritesVenues(user:number):Promise<any[]> {
     return this.http.get('http://localhost:8080/api/users/'+user+'/favourites',this.options)
@@ -46,12 +52,18 @@ export class UserService {
   addUserFavouritesVenues(user:number,venue:number) {
     return this.http.post('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Dodavanje venue u userove favorite nije uspjelo")});
+      .then(response => {this.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id).then(
+        response => Constants.favorites=response
+      )},err => {throw new Error("Dodavanje venue u userove favorite nije uspjelo")}).then(
+
+      );
   }
   deleteUserFavouritesVenues(user:number,venue:number) {
     return this.http.delete('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Brisanje venuea iz userovih favorita nije uspjelo")});
+      .then(response => {this.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id).then(
+        response => Constants.favorites=response
+      )},err => {throw new Error("Brisanje venuea iz userovih favorita nije uspjelo")});
   }
 
 }

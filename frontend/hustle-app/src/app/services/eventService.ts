@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {LoginService} from "./login.service";
 import { Event } from "../models/Event";
 import 'rxjs/add/operator/map'
+import {Constants} from "../Constants/constants";
 
 @Injectable()
 export class EventService {
@@ -24,17 +25,23 @@ export class EventService {
   deleteEvent(eventId : number) {
     return this.http.delete('http://localhost:8080/api/events/'+eventId,this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Brisanje nije uspjelo ")} );
+      .then(response => {this.getEvents().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Brisanje nije uspjelo ")} );
   }
   updateEvent(event : Event) {
     return this.http.put('http://localhost:8080/api/events/'+event.id,JSON.stringify(event),this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Ažuriranje podataka nije uspjelo ")})
+      .then(response => {this.getEvents().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Ažuriranje podataka nije uspjelo ")})
   }
   addEvent(event : Event) {
     return this.http.post('http://localhost:8080/api/events',JSON.stringify(event),this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Dodavanje podatka nije uspjelo ")})
+      .then(response => {this.getEvents().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Dodavanje podatka nije uspjelo ")})
   }
 
 }

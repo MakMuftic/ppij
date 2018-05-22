@@ -5,12 +5,13 @@
       <span class="c-form__text c-form__text--small"> Description of event:</span>
       <p class="c-card__content">{{event.description}}</p>
       <span class="c-form__text c-form__text--small"> Location of event:</span>
-      <p class="c-card__date">{{event.location}}</p>
+      <p class="c-card__date">{{event.venue.location}}</p>
       <span class="c-form__text c-form__text--small"> Type of venue where event is happening</span>
-      <p class="c-card__date">{{getVenue(event.idVenue).name}}</p>
+      <p class="c-card__date">{{event.venue.type}}</p>
+      <span class="c-form__text c-form__text--small"> Name of venue where event is happening</span>
+      <p class="c-card__date">{{event.venue.name}}</p>
       <span class="c-form__text c-form__text--small"> Sport that is playing</span>
-      <p class="c-card__date">{{getSport(event.idSport).name}}</p>
-      <img src="{{event.image.imageName}}" class="c-form__text c-form__text--small"/>
+      <p class="c-card__date">{{event.sport.name}}</p>
       <span class="c-form__text c-form__text--small"> Date </span>
       <p class="c-card__date">{{event.date}}.</p>
 

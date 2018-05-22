@@ -23,8 +23,7 @@ export class EventViewComponent implements OnInit {
               private sportService:SportService,
               private imageService:ImageService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   getVenue(venueId:number) {
     this.venueService.getVenue(venueId)
       .then(venue => this.venue = venue)
