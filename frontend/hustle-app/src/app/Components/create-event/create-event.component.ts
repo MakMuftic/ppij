@@ -29,7 +29,7 @@ export class CreateEventComponent implements OnInit {
   file:File;
   @Input() boolPop:boolean;
   @Output() boolChange = new EventEmitter<boolean>();
-  image:Image;
+  image:any;
   selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private venueService:VenueService,

@@ -30,7 +30,8 @@ export class UserService {
       .then(response => console.log(response),err => {throw new Error("Brisanje usera nije uspjelo")})
   }
   registerUser(user : User,password:string) {
-    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}))
+    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}),new RequestOptions({headers:new
+    Headers({"Content-Type":"application/json"})}))
       .toPromise().then(response =>  { console.log(response),err => localStorage.setItem("registerError", "Y")
       });
   }
