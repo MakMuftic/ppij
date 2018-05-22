@@ -22,7 +22,7 @@ data class User(
         @JoinTable(name = "user_sports",
                 joinColumns = [(JoinColumn(name = "user_id", referencedColumnName = "id"))],
                 inverseJoinColumns = [(JoinColumn(name = "sport_id", referencedColumnName = "id"))])
-        var sports: List<Sport> = mutableListOf(),
+        var sports: List<Sport>? = mutableListOf(),
         @ManyToOne
         @JoinColumn(name = "image_id")
         var image: Image? = null,
