@@ -17,7 +17,7 @@ data class User(
         @JsonIgnore
         var password:String? = null,
         var phoneNumber: String? = null,
-        var aboutMeDescription: String,
+        var aboutMeDescription: String? = null,
         @ManyToMany(fetch = FetchType.LAZY, cascade = [(CascadeType.MERGE)])
         @JoinTable(name = "user_sports",
                 joinColumns = [(JoinColumn(name = "user_id", referencedColumnName = "id"))],
