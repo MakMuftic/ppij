@@ -46,25 +46,29 @@ export class ProfileComponent implements OnInit {
       this.file=file;
     }
   }
+  check(sportId:number) {
+    let bool = false;
+    this.sports.forEach(e => {
+      if(e.id == sportId) {
+        this.selectedSports.push(e);
+        bool=true
+      }
+    })
+    return bool;
+  }
   update() {
     this.user.sports=this.selectedSports;
-    this.imageService.addImage(this.file).then(
-      image => this.image = image
-    );
+    if(this.file != null) {
+      this.imageService.addImage(this.file).then(
+        image => this.image = image
+      );
+    }
     this.user.image = this.image;
     this.userService.updateUser(this.user);
     Constants.type = "";
     this.boolPop = true;
     this.boolChange.emit(this.boolPop);
 
-  }
-  check(sport:Sport) {
-    this.user.sports.forEach(e => {
-      if(e.id == sport.id) {
-        return true
-      }
-    });
-    return false;
   }
 
 }

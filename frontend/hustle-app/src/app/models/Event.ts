@@ -6,15 +6,15 @@ export class Event {
    name : string;
    description:string;
    venue: Venue;
-   sports:Sport[];
+   sport:Sport;
    image:Image;
    date :string;
    constructor(name:string,description:string,
-                venue:Venue,sports:Sport[],image:Image,date:string) {
+                venue:Venue,sport:Sport,image:Image,date:string) {
                   this.name = name;
                   this.description = description;
                   this.venue = venue;
-                  this.sports = sports;
+                  this.sport = sport;
                   this.image = image;
                   this.date=date;
                 }
