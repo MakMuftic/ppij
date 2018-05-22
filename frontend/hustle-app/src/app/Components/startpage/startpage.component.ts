@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import {NgForm} from '@angular/forms';
+import { Constants} from "../../Constants/constants";
 
 import { LoginService } from "../../services/login.service";
 import { SportService } from "../../services/sportService";
@@ -21,13 +22,11 @@ import { ImageService } from "../../services/imageService";
 })
 export class StartpageComponent implements OnInit {
   loading = false;
-  error = '';
-  sports:any[]=[];
-  events:any[]=[];
-  venues:any[]=[];
+  sports:any[];
+  events:any[];
+  venues:any[];
   favorites:any[]=[];
   user:User;
-  type: string ="";
 
 
 
@@ -36,16 +35,24 @@ export class StartpageComponent implements OnInit {
   private venueService:VenueService,private userService:UserService,private imageService:ImageService) { }
 
   ngOnInit() {
+    this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(user => this.user = user);
+    this.eventService.getEvents().
+    then(events => this.events = events);
+    this.venueService.getVenues()
+      .then(venues => this.venues = venues);
+    this.userService.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id)
+      .then(favorites => this.favorites = favorites);
   }
 
   openProfile() {
-    this.type = "P";
+      Constants.type="P";
     }
   toEvents() {
     if(localStorage.getItem("currentUser") !== null) {
-      this.type="E";
-      this.eventService.getEvents()
-        .then(events => this.events = events);
+      Constants.type="E";
+      this.eventService.getEvents().
+      then(events => this.events = events);
+
     } else {
       this.router.navigate(['welcomepage']);
     }
@@ -53,7 +60,7 @@ export class StartpageComponent implements OnInit {
   }
   toVenues() {
     if(localStorage.getItem("currentUser") !== null) {
-      this.type = "V";
+      Constants.type="V";
       this.venueService.getVenues()
         .then(venues => this.venues = venues);
     } else {
@@ -62,12 +69,11 @@ export class StartpageComponent implements OnInit {
 
   }
   create() {
-    this.type="C";
+    Constants.type="C";
   }
   tofavorites() {
     if(localStorage.getItem("currentUser") !== null) {
-      this.type =  "F";
-      this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(user => this.user = user);
+      Constants.type="F";
       this.userService.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id)
         .then(favorites => this.favorites = favorites);
     } else {
@@ -84,12 +90,9 @@ export class StartpageComponent implements OnInit {
     }
 
   }
-  getType() {return this.type}
-  getSports() {
-    this.sportService.getSports()
-      .then(sports => this.sports = sports);
-      console.log(this.sports);
-  }
+  getType() {return Constants.type}
+
+  d
   localStorageItemName(id: string): string {
     return JSON.parse(localStorage.getItem(id)).username;
   }

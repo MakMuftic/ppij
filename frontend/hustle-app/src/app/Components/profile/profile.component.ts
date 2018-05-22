@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {NgForm} from '@angular/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -11,6 +11,8 @@ import {SportService} from "../../services/sportService";
 import {Sport} from "../../models/sport";
 import {ImageService} from "../../services/imageService";
 import {Image} from "../../models/image";
+import {Constants} from "../../Constants/constants";
+
 
 @Component({
   selector: 'app-profile',
@@ -18,13 +20,11 @@ import {Image} from "../../models/image";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  updateForm:FormGroup;
+  @Input('user') user: User;
   sports:any[];
-  user:User;
   image:Image;
   pass:string;
-  userSports:Sport[];
-  pictureUrl:any;
+  file:File;
   selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private sportService:SportService,
@@ -35,32 +35,32 @@ export class ProfileComponent implements OnInit {
     this.sportService.getSports().then(
       sports => this.sports = sports
     );
-    this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(
-      user => this.user = user);
-
 
   }
 
-  checkIfValidField(field: string,type:string): boolean {
-    return !this.updateForm.controls[field].valid && this.updateForm.controls[field].touched;
-
-  }
   onFileChange(event) {
     if(event.target.files.length > 0) {
       let file = event.target.files[0];
-      this.pictureUrl=file;
+      this.file=file;
     }
-  }
-  checkIfSelected(sport:Sport) {
-    return this.user.sports.indexOf(sport) != -1 ;
   }
   update() {
     this.user.sports=this.selectedSports;
-    this.imageService.addImage(this.pictureUrl).then(
+    this.imageService.addImage(this.file).then(
       image => this.image = image
     );
     this.user.image = this.image;
     this.userService.updateUser(this.user);
+    Constants.type = "";
 
   }
+  check(sport:Sport) {
+    this.user.sports.forEach(e => {
+      if(e.id == sport.id) {
+        return true
+      }
+    });
+    return false;
+  }
+
 }

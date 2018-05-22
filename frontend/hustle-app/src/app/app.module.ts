@@ -11,22 +11,17 @@ import { RoutingModule } from "./routing/routing.module";
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { StartpageComponent } from './Components/startpage/startpage.component';
-import { EventsComponent } from './Components/events/events.component';
-import { EventComponent } from './Components/event/event.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { EventListComponent } from './Components/event-list/event-list.component';
-import { EventfullComponent } from './Components/eventfull/eventfull.component';
 import { EventService } from './services/eventService';
-import { IgralisteService } from "./services/igralisteService";
-import { DvoranaService } from "./services/dvoranaService";
 import { LoginService } from "./services/login.service";
-import { SportlistComponent } from './Components/sportlist/sportlist.component';
 import { SportService } from "./services/sportService";
 import { UserService } from "./services/userService";
 import { VenueService } from "./services/venueService";
 import { ImageService } from "./services/imageService";
-import { ViewComponent } from './Components/view/view.component';
 import { CreateEventComponent } from './Components/create-event/create-event.component';
+import { EventViewComponent } from './Components/event-view/event-view.component';
+import { VenuesViewComponent } from './Components/venues-view/venues-view.component';
+import { FavoriteViewComponent } from './Components/favorite-view/favorite-view.component';
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('currentUser')).token;
 }
@@ -36,14 +31,11 @@ export function tokenGetter() {
     AppComponent,
     WelcomeComponent,
     StartpageComponent,
-    EventsComponent,
-    EventComponent,
     ProfileComponent,
-    EventListComponent,
-    EventfullComponent,
-    SportlistComponent,
-    ViewComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    EventViewComponent,
+    VenuesViewComponent,
+    FavoriteViewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,8 +54,6 @@ export function tokenGetter() {
     })],
   providers: [
     EventService,
-    IgralisteService,
-    DvoranaService,
     LoginService,
     SportService,
     VenueService,

@@ -26,7 +26,7 @@
   <div class="c-form__input-group c-form__input-group--no-border">
     <span class="c-form__label">Sports</span>
     <select class="c-form__select" multiple name="selectedSports" [(ngModel)] = "selectedSports">
-      <option *ngFor="let sport of sports" [ngValue]="sport" [selected]="checkIfSelected(sport)">
+      <option *ngFor="let sport of sports" [value]="sport" [selected]="check(sport)">
         {{ sport.name }}
       </option>
     </select>

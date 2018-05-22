@@ -1,19 +1,45 @@
-<div class="c-form c-form--big" [formGroup]="createForm">
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('name')"> Name is required</span>
+<div class="c-form c-form--big" >
   <div class="c-form__input-group">
-    <i class="material-icons c-form__icon" >person</i>
-    <input class="c-form__input" type="text" formControlName="name" placeholder="Name of event">
+    <input class="c-form__input" type="text" placeholder="Event name"  [(ngModel)]="event.name">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('description')"> Description is required</span>
   <div class="c-form__input-group">
-    <i class="material-icons c-form__icon">person</i>
-    <input class="c-form__input" type="text" formControlName="lastName" placeholder="">
+    <input class="c-form__input" type="text" placeholder="Description"  [(ngModel)]="event.description">
   </div>
-  <span class="c-form__text c-form__text--small" *ngIf="checkIfValidField('date')"> Date is required</span>
+  <br />
+  <br />
+  <span class="c-form__label">Select a venue where it will be held</span>
+  <select class="c-form__select"  name="selectedVenue" [(ngModel)] = "event.venueId">
+    <option *ngFor="let venue of venues" [value]="venue.id" >
+      {{ venue.name }}
+    </option>
+  </select>
+  <br />
+  <br />
+  <span class="c-form__label">Select a sport</span>
+  <select class="c-form__select"  name="selectedSport"  [(ngModel)] = "event.sportId">
+    <option *ngFor="let sport of sports" [value]="sport.id" >
+      {{ sport.name }}
+    </option>
+  </select>
+  <br />
+  <br />
+  <span class="c-form__label">Date</span>
   <div class="c-form__input-group">
-    <i class="material-icons c-form__icon">person</i>
-    <input class="c-form__input" type="text" formControlName="lastName" placeholder="Last Name">
+    <i class="material-icons c-form__icon">date</i>
+    <input class="c-form__input" type="date" placeholder="Date"   [(ngModel)] ="event.email">
   </div>
-  <button class="c-form__button" type="button" (click)="create()" [disabled]="!createForm.valid">Update</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class="c-form__input-group c-form__input-group--no-border">
+    <span class="c-form__label">Image of event</span>
+    <input class="c-form__upload" id="file" type="file" accept="image/*" (change)="onFileChange($event)" #fileInput>
+  </div>
+  <br />
+  <br />
+  <div class="c-form__field-group">
+    <button class="c-form__button" (click)="create()" type="button">Create</button>
+  </div>
 </div>
 

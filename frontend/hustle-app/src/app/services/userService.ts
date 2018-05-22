@@ -29,7 +29,7 @@ export class UserService {
       .then(response => console.log(response),err => {throw new Error("Brisanje usera nije uspjelo")})
   }
   registerUser(user : User,password:string) {
-    return this.http.post('http://localhost:8080/api/users/',JSON.stringify({user:user,password:password}),this.options)
+    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}),this.options)
       .map((response:Response) => { this.loginService.login(user.userName,password) && localStorage.setItem("loginError", "N") && this.router.navigate(['startpage']),err => localStorage.setItem("registerError", "Y")
       });
   }
