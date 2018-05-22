@@ -36,13 +36,13 @@ class RegisterController(
 data class UserWrapper(
         var id: Long,
         var userName: String,
-        var firstName: String,
-        var lastName: String,
+        var firstName: String?,
+        var lastName: String?,
         var email: String,
-        var phoneNumber: String,
-        var aboutMeDescription: String,
-        var sports: List<Sport>,
-        var image: Image,
+        var phoneNumber: String?,
+        var aboutMeDescription: String?,
+        var sports: List<Sport>?,
+        var image: Image?,
         var admin: Boolean
 )
 

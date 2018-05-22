@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, OnChanges, OnInit, Injectable} from '@angular/core';
+import { Component, OnInit,EventEmitter,Input,Output,OnChanges,Injectable,ChangeDetectorRef } from '@angular/core';
 import {Router} from "@angular/router";
 import {VenueService} from "../../services/venueService";
 import {UserService} from "../../services/userService";
@@ -19,7 +19,8 @@ export class VenuesViewComponent implements OnInit,OnChanges {
   @Output() boolChange = new EventEmitter<boolean>();
   constructor(private router:Router,
               private userService:UserService,
-              private venueService:VenueService) { }
+              private venueService:VenueService,
+              private cd :ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log(this.venues);
@@ -55,10 +56,11 @@ export class VenuesViewComponent implements OnInit,OnChanges {
     } else {
       this.userService.addUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id,venueId);
     }
-    this.userService.getUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id)
-      .then(response => Constants.favorites = response);
     this.bool = true;
-    this.boolChange.emit(this.bool)
+    this.boolChange.emit(this.bool);
+    this.switch = this.checkFav(venueId);
+    this.cd.detectChanges();
+
 
   }
 

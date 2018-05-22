@@ -1,4 +1,4 @@
-import {Component, Injectable, OnChanges, OnInit} from '@angular/core';
+import {ApplicationRef, ChangeDetectorRef, Component, Injectable, OnChanges, OnInit} from '@angular/core';
 import { Router } from "@angular/router";
 import {NgForm} from '@angular/forms';
 import { Constants} from "../../Constants/constants";
@@ -45,7 +45,7 @@ export class StartpageComponent implements OnInit,OnChanges{
     );
   }
   ngOnChanges() {
-    if (Constants.favorites) {
+    if (this.switch ) {
       this.ngOnInit();
     }
   }

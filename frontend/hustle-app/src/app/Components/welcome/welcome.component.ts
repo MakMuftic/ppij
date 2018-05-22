@@ -87,7 +87,9 @@ export class WelcomeComponent implements OnInit {
     let lastName = this.registerForm.get("lastName").value;
     let email = this.registerForm.get("email").value;
     let user = new User(this.username,firstName,lastName,email,"","",null,null,false);
-    this.userService.registerUser(user,this.pass).toPromise().then(response => this.startpage());
+    this.userService.registerUser(user,this.pass).toPromise().then(response => console.log(response));
+    this.loginService.login(this.username,this.pass).toPromise().then(response => this.startpage() &&
+      localStorage.setItem("loginError", "N") ,err => localStorage.setItem("loginError","Y") && this.home());
   }
   startpage() {
     this.router.navigate(['startpage']);

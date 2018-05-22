@@ -18,9 +18,9 @@ export class LoginService {
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let token = response.headers.get("Authorization");
-                let id = response.headers.get("X-USER-ID");
-                localStorage.setItem("currentUser",null);
                 if (token) {
+                  localStorage.setItem("currentUser",null);
+                  let id = response.headers.get("X-USER-ID");
                     // set token property
                     this.token = token;
                     // store username and jwt token in local storage to keep user logged in between page refreshes

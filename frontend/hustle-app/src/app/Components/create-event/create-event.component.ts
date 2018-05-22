@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output,OnChanges,Injectable,ChangeDetectorRef } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/userService";
 import {LoginService} from "../../services/login.service";
@@ -10,6 +10,8 @@ import {ImageService} from "../../services/imageService";
 import {Image} from "../../models/image";
 import {EventService} from "../../services/eventService";
 import {Constants} from "../../Constants/constants";
+import {Venue} from "../../models/venue";
+import {Sport} from "../../models/sport";
 
 @Component({
   selector: 'app-create-event',
@@ -19,13 +21,16 @@ import {Constants} from "../../Constants/constants";
 export class CreateEventComponent implements OnInit {
   venues:any[];
   sports:any[];
-  event:Event = new Event("","",0,0,new Image(""),"");
+  venue:Venue;
+  event:Event = new Event("","",new Venue("","",[],"","",[])
+  ,[],new Image(""),"");
   file:File;
   image:Image;
+  selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private venueService:VenueService,
               private sportService:SportService,private imageService: ImageService,
-              private eventService:EventService) {
+              private eventService:EventService,private cd:ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -41,11 +46,9 @@ export class CreateEventComponent implements OnInit {
     this.imageService.addImage(this.file).then(
       image => this.image = image
     );
-    console.log(this.event.sportId);
-    console.log(this.event.venueId);
-    console.log(this.event.name);
-    console.log(this.event.date);
-    console.log(this.image);
+    this.event.venue=this.venue;
+    this.event.sports = this.selectedSports;
+    console.log(this.event);
 
     this.eventService.addEvent(this.event);
     Constants.type="";

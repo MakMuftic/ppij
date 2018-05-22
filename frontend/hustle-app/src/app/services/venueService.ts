@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {LoginService} from "./login.service";
 import { Venue} from "../models/venue";
 import 'rxjs/add/operator/map'
+import {Constants} from "../Constants/constants";
 
 @Injectable()
 export class VenueService {
@@ -24,17 +25,23 @@ export class VenueService {
   deleteVenue(venue: number) {
     return this.http.delete('http://localhost:8080/api/venues/'+venue,this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Brisanje venua nije uspjelo")})
+      .then(response => {this.getVenues().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Brisanje venua nije uspjelo")})
   }
   addVenue(venue: Venue) {
     return this.http.post('http://localhost:8080/api/venues',JSON.stringify(venue),this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Dodavanje venua nije uspjelo")})
+      .then(response => {this.getVenues().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Dodavanje venua nije uspjelo")})
   }
   updateVenue(venue: Venue) {
     return this.http.put('http://localhost:8080/api/venues/'+venue.id,JSON.stringify(venue),this.options)
       .toPromise()
-      .then(response => console.log(response),err => {throw new Error("Ažuriranje venua nije uspjelo")});
+      .then(response => {this.getVenues().then(
+        response => Constants.venues = response
+      );},err => {throw new Error("Ažuriranje venua nije uspjelo")});
   }
   getAllUserFavoritingThisVenue(venue:number):Promise<any[]> {
     return this.http.get('http://localhost:8080/api/venues/'+venue+'/favourites',this.options)
