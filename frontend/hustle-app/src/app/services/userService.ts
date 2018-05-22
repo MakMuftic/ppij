@@ -30,7 +30,7 @@ export class UserService {
       .then(response => console.log(response),err => {throw new Error("Brisanje usera nije uspjelo")})
   }
   registerUser(user : User,password:string) {
-    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}),new RequestOptions({headers:new Headers({ "Content-Type":"application/json"})}))
+    return this.http.post('http://localhost:8080/register',JSON.stringify({user:user,password:password}))
       .toPromise().then(response =>  { console.log(response),err => localStorage.setItem("registerError", "Y")
       });
   }
@@ -44,12 +44,12 @@ export class UserService {
       )
   }
   getUserFavouritesVenues(user:number):Promise<any[]> {
-    return this.http.get('http://localhost:8080/api/users/'+user+'/favourites',this.options)
+    return this.http.get('http://localhost:8080/api/users/'+user+'/favourites',new RequestOptions({headers:new Headers({ "Content-Type":"application/json"})}))
       .toPromise()
       .then(response => response.json() as any[],err => {throw new Error("Dohvaćanje venues koji su favorite za usera  nije uspjelo")});
   }
   addUserFavouritesVenues(user:number,venue:number) {
-    return this.http.post('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
+    return this.http.post('http://localhost:8080/api/users/'+user+'/favourites/'+venue,new RequestOptions({headers:new Headers({ "Content-Type":"application/json"})}))
       .toPromise()
       .then(response => {this.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id).then(
         response => Constants.favorites=response
@@ -58,7 +58,7 @@ export class UserService {
       );
   }
   deleteUserFavouritesVenues(user:number,venue:number) {
-    return this.http.delete('http://localhost:8080/api/users/'+user+'/favourites/'+venue,this.options)
+    return this.http.delete('http://localhost:8080/api/users/'+user+'/favourites/'+venue,new RequestOptions({headers:new Headers({ "Content-Type":"application/json"})}))
       .toPromise()
       .then(response => {this.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id).then(
         response => Constants.favorites=response

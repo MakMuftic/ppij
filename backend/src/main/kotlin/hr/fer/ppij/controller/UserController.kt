@@ -19,12 +19,14 @@ class UserController(
         private val venueRepository: VenueRepository
 ) {
     /* BasicUserDto endpoints */
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @GetMapping("/users/basic")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun getAllUsersBasicInfo() = userRepository.findAll().map { it.toDto() }
 
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @GetMapping("/users/basic/{userId}")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun getUserBasicInfoById(@PathVariable userId: Long): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
             return ResponseEntity.ok(it.toDto())
@@ -33,12 +35,14 @@ class UserController(
     }
     /* User endpoints */
 
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @GetMapping("/users")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun getAllUsersInfo(): MutableIterable<User> = userRepository.findAll()
 
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @GetMapping("/users/{userId}")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun getFullUserById(@PathVariable userId: Long): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
             return ResponseEntity.ok(it)
@@ -51,8 +55,9 @@ class UserController(
             val password: String
     )
 
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @PutMapping("/users/{userId}")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun updateUser(@PathVariable userId: Long, @RequestBody user: User): ResponseEntity<*> {
         userRepository.findOne(userId)?.let {
             val updatedUser = it.copy(
@@ -72,8 +77,9 @@ class UserController(
         return ResponseEntity.notFound().build()
     }
 
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @DeleteMapping("/users/{userId}")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun deleteUser(@PathVariable userId: Long): ResponseEntity<Void> {
         userRepository.findOne(userId)?.let {
             userRepository.delete(userId)
@@ -83,8 +89,9 @@ class UserController(
     }
 
     /* Favourite endpoints */
-    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
+
     @GetMapping("/users/{userId}/favourites")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun getUserFavouritesVenues(@PathVariable userId: Long): ResponseEntity<*> {
         // check if user exists
         if (!userRepository.exists(userId)) return ResponseEntity.notFound().build()
@@ -104,7 +111,9 @@ class UserController(
         return ResponseEntity.ok(favouriteRepository.save(Favourite(userId, venueId)))
     }
 
+
     @DeleteMapping("/users/{userId}/favourites/{venueId}")
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     fun deleteUserNewFavouriteVenue(@PathVariable userId: Long, @PathVariable venueId: Long): ResponseEntity<*> {
         // check if user or venue exists
         if (!userRepository.exists(userId) || !venueRepository.exists(venueId))
