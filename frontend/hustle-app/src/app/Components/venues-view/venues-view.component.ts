@@ -23,14 +23,14 @@ export class VenuesViewComponent implements OnInit {
       if(e.id == venue) {
         this.switch= true;
         bool=true
-        return true
+        return;
       }
     });
      if (bool) {
-       return true
+       return false
      } else {
        this.switch=false;
-       return false;
+       return true;
      }
   }
 
