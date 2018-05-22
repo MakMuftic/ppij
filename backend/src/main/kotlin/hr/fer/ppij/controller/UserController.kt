@@ -1,6 +1,5 @@
 package hr.fer.ppij.controller
 
-import hr.fer.ppij.ApiController
 import hr.fer.ppij.model.Favourite
 import hr.fer.ppij.model.User
 import hr.fer.ppij.repository.FavouriteRepository
@@ -100,15 +99,6 @@ class UserController(
                 .findByUserId(userId)
                 .map { venueRepository.findOne(it.venueId).toDto() }
         )
-    }
-
-    @PostMapping("/users/{userId}/favourites/{venueId}")
-    fun addUserNewFavouriteVenue(@PathVariable userId: Long, @PathVariable venueId: Long): ResponseEntity<*> {
-        // check if user or venue exists
-        if (!userRepository.exists(userId) || !venueRepository.exists(venueId))
-            return ResponseEntity.notFound().build()
-        // save new favourite venue for user
-        return ResponseEntity.ok(favouriteRepository.save(Favourite(userId, venueId)))
     }
 
 
