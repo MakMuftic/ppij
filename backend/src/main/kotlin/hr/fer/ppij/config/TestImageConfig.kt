@@ -13,7 +13,6 @@ import java.nio.file.Paths
 import javax.imageio.ImageIO
 
 
-@Profile("test")
 @Configuration
 class TestImageConfig {
     @Bean

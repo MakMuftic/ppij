@@ -43,7 +43,7 @@ logging:
     root: INFO
   file: logs/360-survey.log
 
-
+#backend/src/resources/public/static/upload-dir
 app:
   upload-route: upload-dir
 

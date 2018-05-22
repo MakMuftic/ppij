@@ -32,6 +32,8 @@ class ImageService(
         val uuid = UUID.randomUUID().toString()
         val imageName = "$uuid.${FilenameUtils.getExtension(file.originalFilename)}"
         try {
+            val path = getImagePath(imageName)
+            //Files.createFile(path)
             Files.copy(file.inputStream, getImagePath(imageName))
         } catch (e: IOException) {
             throw ImagePersistenceException(e)
