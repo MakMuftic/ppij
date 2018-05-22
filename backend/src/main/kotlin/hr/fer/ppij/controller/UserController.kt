@@ -83,6 +83,7 @@ class UserController(
     }
 
     /* Favourite endpoints */
+    @PreAuthorize("hasAuthority('${AuthoritiesConstants.ADMIN}')")
     @GetMapping("/users/{userId}/favourites")
     fun getUserFavouritesVenues(@PathVariable userId: Long): ResponseEntity<*> {
         // check if user exists
