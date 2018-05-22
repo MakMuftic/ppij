@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Output,OnChanges,Injectable,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output,OnChanges,Injectable,ChangeDetectorRef,Input } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/userService";
 import {LoginService} from "../../services/login.service";
@@ -22,6 +22,8 @@ export class CreateEventComponent implements OnInit {
   venues:any[];
   sports:any[];
   venue:Venue;
+  @Input() boolPop:boolean;
+  @Output() boolChange = new EventEmitter<boolean>();
   event:Event = new Event("","",new Venue("","",[],"","",[])
   ,[],new Image(""),"");
   file:File;
@@ -52,6 +54,8 @@ export class CreateEventComponent implements OnInit {
 
     this.eventService.addEvent(this.event);
     Constants.type="";
+    this.boolPop = true;
+    this.boolChange.emit(this.boolPop);
   }
   onFileChange(event) {
     if(event.target.files.length > 0) {

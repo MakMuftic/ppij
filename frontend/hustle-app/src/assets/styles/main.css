@@ -1040,8 +1040,18 @@ button {
   top: 10px;
   right: 20px;
   padding: 20px;
-  background-color: rgba(243, 156, 18, 0.8);
+  background-color: rgba(243, 156, 18, 0.6);
   border-radius: 5px;
   z-index: 9999;
   color: white;
+  cursor: pointer;
+  -webkit-transition: all .1s;
+  -o-transition: all .1s;
+  transition: all .1s;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.c-popup:hover {
+  background-color: rgba(243, 156, 18, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }

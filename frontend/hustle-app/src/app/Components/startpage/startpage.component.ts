@@ -24,13 +24,14 @@ import { ImageService } from "../../services/imageService";
 export class StartpageComponent implements OnInit,OnChanges{
   loading = false;
   user:User;
-  switch:boolean=false;
+  pop:boolean = false;
 
 
 
   constructor(private router: Router,private loginService:LoginService,
   private sportService:SportService,private eventService:EventService,
-  private venueService:VenueService,private userService:UserService,private imageService:ImageService) { }
+  private venueService:VenueService,private userService:UserService,private imageService:ImageService,
+              private cd:ChangeDetectorRef) { }
 
   ngOnInit() {
     this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(user => this.user = user);
@@ -45,8 +46,8 @@ export class StartpageComponent implements OnInit,OnChanges{
     );
   }
   ngOnChanges() {
-    if (this.switch ) {
-      this.ngOnInit();
+    if (this.pop ) {
+      this.cd.detectChanges();
     }
   }
   openProfile() {

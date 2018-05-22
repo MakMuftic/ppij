@@ -20,6 +20,8 @@ import {Constants} from "../../Constants/constants";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @Input() boolPop:boolean;
+  @Output() boolChange = new EventEmitter<boolean>();
   user:User = Constants.user;
   sports:any[];
   image:Image;
@@ -52,6 +54,8 @@ export class ProfileComponent implements OnInit {
     this.user.image = this.image;
     this.userService.updateUser(this.user);
     Constants.type = "";
+    this.boolPop = true;
+    this.boolChange.emit(this.boolPop);
 
   }
   check(sport:Sport) {
