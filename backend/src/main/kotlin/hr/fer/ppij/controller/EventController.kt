@@ -29,12 +29,12 @@ class EventController(
     }
 
     @PostMapping("/events")
-    fun addEvent(@RequestBody event: EventDto) {
+    fun addEvent(@RequestBody event: Event) {
         eventRepository.save(Event(
                 name = event.name,
                 description = event.description,
-                venue = venueRepository.findOne(event.venueId),
-                sport = sportRepository.findOne(event.sportId),
+                venue = event.venue,
+                sport = event.sport,
                 image = event.image,
                 date = event.date
         ))
