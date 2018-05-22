@@ -40,7 +40,7 @@ export class EventService {
     return this.http.post('http://localhost:8080/api/events',JSON.stringify(event),this.options)
       .toPromise()
       .then(response => {this.getEvents().then(
-        response => Constants.venues = response
+        response => Constants.events = response
       );},err => {throw new Error("Dodavanje podatka nije uspjelo ")})
   }
 

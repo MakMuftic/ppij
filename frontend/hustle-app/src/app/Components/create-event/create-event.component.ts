@@ -22,11 +22,13 @@ export class CreateEventComponent implements OnInit {
   venues:any[];
   sports:any[];
   venue:Venue;
+  sport:Sport;
+  name:string;
+  description:string;
+  date:Date;
+  file:File;
   @Input() boolPop:boolean;
   @Output() boolChange = new EventEmitter<boolean>();
-  event:Event = new Event("","",new Venue("","",[],"","",[])
-  ,[],new Image(""),"");
-  file:File;
   image:Image;
   selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
@@ -45,14 +47,13 @@ export class CreateEventComponent implements OnInit {
 
 
   create() {
-    this.imageService.addImage(this.file).then(
-      image => this.image = image
-    );
-    this.event.venue=this.venue;
-    this.event.sports = this.selectedSports;
-    console.log(this.event);
-
-    this.eventService.addEvent(this.event);
+    if(this.file != null) {
+      this.imageService.addImage(this.file).then(
+        image => this.image = image
+      );
+    }
+    let event = new Event(this.name,this.description,this.venue,this.sport,this.image,this.date.toString())
+    this.eventService.addEvent(event);
     Constants.type="";
     this.boolPop = true;
     this.boolChange.emit(this.boolPop);

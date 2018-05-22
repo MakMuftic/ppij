@@ -1,9 +1,9 @@
 <div class="c-form c-form--big" >
   <div class="c-form__input-group">
-    <input class="c-form__input" type="text" placeholder="Event name"  [(ngModel)]="event.name">
+    <input class="c-form__input" type="text" placeholder="Event name"  [(ngModel)]="name">
   </div>
   <div class="c-form__input-group">
-    <input class="c-form__input" type="text" placeholder="Description"  [(ngModel)]="event.description">
+    <input class="c-form__input" type="text" placeholder="Description"  [(ngModel)]="description">
   </div>
   <br />
   <br />
@@ -16,7 +16,7 @@
   <br />
   <br />
   <span class="c-form__label">Select sports</span>
-  <select class="c-form__select" multiple name="selectedSports" [(ngModel)] = "selectedSports">
+  <select class="c-form__select"  name="selectedSports" [(ngModel)] = "sport">
     <option *ngFor="let sport of sports" [ngValue]="sport">
       {{ sport.name }}
     </option>
@@ -26,7 +26,7 @@
   <span class="c-form__label">Date</span>
   <div class="c-form__input-group">
     <i class="material-icons c-form__icon">date</i>
-    <input class="c-form__input" type="date" placeholder="Date"   [(ngModel)] ="event.date">
+    <input class="c-form__input" type="date" placeholder="Date"   [(ngModel)] ="date">
   </div>
   <br />
   <br />
