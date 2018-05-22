@@ -13,7 +13,7 @@ import { User } from '../../models/user';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-
+  load:boolean=false;
   pass:string = "";
   username:string = "";
   loginForm :FormGroup;
@@ -24,10 +24,12 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.load=true;
     this.initForms();
     localStorage.setItem("loginError", "N");
     localStorage.setItem("registerError", "N");
     this.formAnimation();
+    this.load=false;
   }
   formAnimation() {
     const switchRegister = document.querySelector('.js-switch-register');
@@ -80,19 +82,22 @@ export class WelcomeComponent implements OnInit {
       });
     }
   }
-  register() {
+  async register() {
     this.username = this.registerForm.get("username").value;
     this.pass = this.registerForm.get("password").value;
     let firstName = this.registerForm.get("firstName").value;
     let lastName = this.registerForm.get("lastName").value;
     let email = this.registerForm.get("email").value;
-    let user = new User(this.username,firstName,lastName,email,"","",null,null,false);
-    this.userService.registerUser(user,this.pass).toPromise().then(response => console.log(response));
-    this.loginService.login(this.username,this.pass).toPromise().then(response => this.startpage() &&
-      localStorage.setItem("loginError", "N") ,err => localStorage.setItem("loginError","Y") && this.home());
+    let user = new User(this.username,firstName,lastName,email,"","",null,null,true);
+    await this.userService.registerUser(user,this.pass);
+    this.call();
+
   }
   startpage() {
     this.router.navigate(['startpage']);
+  }
+  call() {
+    this.loginService.login(this.username,this.pass);
   }
   home() {
     this.router.navigate(['']);
@@ -100,8 +105,7 @@ export class WelcomeComponent implements OnInit {
   login() {
     this.username = this.loginForm.get("username").value;
     this.pass = this.loginForm.get("password").value;
-    this.loginService.login(this.username,this.pass).toPromise().then(response => this.startpage() &&
-      localStorage.setItem("loginError", "N") ,err => localStorage.setItem("loginError", "Y") && this.home());
+    this.loginService.login(this.username,this.pass);
 
   }
 

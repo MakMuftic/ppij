@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 
 /***/ }),
@@ -79,6 +79,8 @@ module.exports = __webpack_require__(3);
 
 
 __webpack_require__(2);
+
+__webpack_require__(3);
 
 /***/ }),
 /* 2 */
@@ -141,6 +143,25 @@ __webpack_require__(2);
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+(function (document) {
+  var popups = document.querySelectorAll('.js-popup');
+
+  if (popups) {
+    popups.forEach(function (popup) {
+      popup.addEventListener('click', function (e) {
+        e.target.remove();
+      });
+    });
+  }
+})(window.document);
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

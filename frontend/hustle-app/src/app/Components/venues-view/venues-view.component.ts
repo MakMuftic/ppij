@@ -15,7 +15,7 @@ export class VenuesViewComponent implements OnInit,OnChanges {
   venues:Venue[] = Constants.venues;
   favorites:any[] = Constants.favorites;
   switch:boolean = false;
-  @Input() bool:boolean;
+  @Input() boolPop:boolean;
   @Output() boolChange = new EventEmitter<boolean>();
   constructor(private router:Router,
               private userService:UserService,
@@ -23,23 +23,15 @@ export class VenuesViewComponent implements OnInit,OnChanges {
               private cd :ChangeDetectorRef) { }
 
   ngOnInit() {
-    console.log(this.venues);
   }
   checkFav(venue:number) {
-    let bool;
-     this.favorites.forEach(e => {
+    let bool = false;
+    Constants.favorites.forEach(e => {
       if(e.id == venue) {
-        this.switch= true;
         bool=true
-        return;
       }
-    });
-     if (bool) {
-       return false
-     } else {
-       this.switch=false;
-       return true;
-     }
+    })
+    return bool;
   }
   ngOnChanges() {
     if(this.switch) {
@@ -50,14 +42,13 @@ export class VenuesViewComponent implements OnInit,OnChanges {
   }
 
   add(venueId:number) {
-    console.log(this.switch);
-    if(this.switch) {
+    if(this.checkFav(venueId)) {
       this.userService.deleteUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id,venueId);
     } else {
       this.userService.addUserFavouritesVenues(JSON.parse(localStorage["currentUser"]).id,venueId);
     }
-    this.bool = true;
-    this.boolChange.emit(this.bool);
+    this.boolPop = true;
+    this.boolChange.emit(this.boolPop);
     this.switch = this.checkFav(venueId);
     this.cd.detectChanges();
 
