@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnChanges, OnInit} from '@angular/core';
 import { Router } from "@angular/router";
 import {NgForm} from '@angular/forms';
 import { Constants} from "../../Constants/constants";
@@ -20,13 +20,11 @@ import { ImageService } from "../../services/imageService";
   templateUrl: './startpage.component.html',
   styleUrls: ['./startpage.component.css']
 })
-export class StartpageComponent implements OnInit {
+@Injectable()
+export class StartpageComponent implements OnInit,OnChanges{
   loading = false;
-  sports:any[];
-  events:any[];
-  venues:any[];
-  favorites:any[]=[];
   user:User;
+  switch:boolean=false;
 
 
 
@@ -37,21 +35,26 @@ export class StartpageComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser(JSON.parse(localStorage.getItem("currentUser")).id).then(user => this.user = user);
     this.eventService.getEvents().
-    then(events => this.events = events);
+    then(events => Constants.events = events);
     this.venueService.getVenues()
-      .then(venues => this.venues = venues);
+      .then(venues => Constants.venues = venues);
     this.userService.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id)
-      .then(favorites => this.favorites = favorites);
+      .then(favorites => Constants.favorites = favorites);
+    this.userService.getUser(JSON.parse(localStorage['currentUser']).id).then(
+      user => Constants.user = user
+    );
   }
-
+  ngOnChanges() {
+    if (Constants.favorites) {
+      this.ngOnInit();
+    }
+  }
   openProfile() {
       Constants.type="P";
     }
   toEvents() {
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="E";
-      this.eventService.getEvents().
-      then(events => this.events = events);
 
     } else {
       this.router.navigate(['welcomepage']);
@@ -61,8 +64,6 @@ export class StartpageComponent implements OnInit {
   toVenues() {
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="V";
-      this.venueService.getVenues()
-        .then(venues => this.venues = venues);
     } else {
       this.router.navigate(['welcomepage']);
     }
@@ -74,8 +75,6 @@ export class StartpageComponent implements OnInit {
   tofavorites() {
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="F";
-      this.userService.getUserFavouritesVenues(JSON.parse(localStorage.getItem("currentUser")).id)
-        .then(favorites => this.favorites = favorites);
     } else {
       this.router.navigate(['welcomepage']);
     }

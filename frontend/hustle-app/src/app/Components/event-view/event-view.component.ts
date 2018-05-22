@@ -6,6 +6,7 @@ import {Venue} from "../../models/venue";
 import {Sport} from "../../models/sport";
 import {SportService} from "../../services/sportService";
 import {ImageService} from "../../services/imageService";
+import {Constants} from "../../Constants/constants";
 
 @Component({
   selector: 'app-event-view',
@@ -13,9 +14,9 @@ import {ImageService} from "../../services/imageService";
   styleUrls: ['./event-view.component.css']
 })
 export class EventViewComponent implements OnInit {
-  @Input('objectType') object: any;
   venue:Venue;
   sport:Sport
+  events:any[]=Constants.events;
   constructor(private router:Router,
               private userService:UserService,
               private venueService:VenueService,
@@ -23,15 +24,17 @@ export class EventViewComponent implements OnInit {
               private imageService:ImageService) { }
 
   ngOnInit() {
-    this.venueService.getVenue(this.object.venueId)
+  }
+  getVenue(venueId:number) {
+    this.venueService.getVenue(venueId)
       .then(venue => this.venue = venue)
-    this.sportService.getSport(this.object.sportId)
+    return this.venue;
+  }
+  getSport(sportId:number) {
+    this.sportService.getSport(sportId)
       .then(sport => this.sport = sport);
+    return this.sport;
   }
 
-
-  getObject() {
-    return this.object;
-  }
 
 }

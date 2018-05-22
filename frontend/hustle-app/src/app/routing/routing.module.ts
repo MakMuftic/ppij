@@ -17,8 +17,6 @@ const routes: Routes = [
     component: WelcomeComponent
   }
 
-
-
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],

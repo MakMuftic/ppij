@@ -22,25 +22,17 @@
     <div *ngIf="getType() == ''"> Ovo će se ispisat kada je ništa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore.
       Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!</div>
     <div *ngIf="getType() == 'P'">
-      <app-profile [user]="user"></app-profile>
+      <app-profile></app-profile>
     </div>
     <div *ngIf="getType() == 'E'">
-        <div class="?" *ngFor="let event of events">
-          <app-event-view [objectType]="event"></app-event-view>
-        </div>
+        <app-event-view></app-event-view>
     </div>
     <div *ngIf="getType() == 'V'">
-      <div class="?" *ngFor="let venue of venues">
-        <app-venues-view [objectType]="venue" [favorites]="favorites"></app-venues-view>
-      </div>
+      <app-venues-view [(bool)]="switch"></app-venues-view>
     </div>
     <div *ngIf="getType() == 'F'">
-      <div class="?" *ngFor="let favorite of favorites">
-        <app-favorite-view [objectType]="favorite"></app-favorite-view>
-      </div>
+      <app-favorite-view></app-favorite-view>
     </div>
-
-
     <div *ngIf="getType() == 'C'">
       <app-create-event></app-create-event>
     </div>

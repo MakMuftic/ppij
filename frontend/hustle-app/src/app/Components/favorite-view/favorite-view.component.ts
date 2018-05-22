@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {VenueService} from "../../services/venueService";
 import {UserService} from "../../services/userService";
+import {Constants} from "../../Constants/constants";
 
 @Component({
   selector: 'app-favorite-view',
@@ -9,7 +10,7 @@ import {UserService} from "../../services/userService";
   styleUrls: ['./favorite-view.component.css']
 })
 export class FavoriteViewComponent implements OnInit {
-  @Input('objectType') object: any;
+  favorites:any[] = Constants.favorites;
   constructor(private router:Router,
               private userService:UserService,
               private venueService:VenueService) { }
@@ -17,8 +18,5 @@ export class FavoriteViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  getObject() {
-    return this.object;
-  }
 
 }

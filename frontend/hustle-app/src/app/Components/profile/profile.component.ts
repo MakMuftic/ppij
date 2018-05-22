@@ -20,7 +20,7 @@ import {Constants} from "../../Constants/constants";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @Input('user') user: User;
+  user:User = Constants.user;
   sports:any[];
   image:Image;
   pass:string;
