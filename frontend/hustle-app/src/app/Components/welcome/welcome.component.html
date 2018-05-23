@@ -1,6 +1,6 @@
 
-<div class="o-preloader__spinner" *ngIf="load"></div>
 <div class="o-cover" style="background-image: url('/assets/images/court.jpg')">
+  <div class="o-preloader__spinner" *ngIf="getRoll()"></div>
   <div class="c-form js-form-login u-display-block u-opacity-1" [formGroup]="loginForm">
     <span class="c-form__text c-form__text--small" *ngIf="localStorageItem('loginError') == 'Y' "> Incorrect username or password </span>
     <br />

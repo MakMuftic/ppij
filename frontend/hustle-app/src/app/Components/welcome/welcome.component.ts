@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NgForm} from '@angular/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from "../../services/userService";
 import { LoginService } from '../../services/login.service';
 import { User } from '../../models/user';
+import {Constants} from "../../Constants/constants";
 
 @Component({
   selector: 'app-welcome',
@@ -13,23 +14,28 @@ import { User } from '../../models/user';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  load:boolean=false;
   pass:string = "";
   username:string = "";
   loginForm :FormGroup;
   registerForm : FormGroup;
 
   constructor(private router:Router,private userService:UserService,
-              private loginService:LoginService,private fb: FormBuilder) {
+              private loginService:LoginService,private fb: FormBuilder,
+              private cd:ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.load=true;
     this.initForms();
     localStorage.setItem("loginError", "N");
     localStorage.setItem("registerError", "N");
     this.formAnimation();
-    this.load=false;
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      Constants.roll = false;
+    },2000);
+
+  }
+  getRoll() {
+    return Constants.roll;
   }
   formAnimation() {
     const switchRegister = document.querySelector('.js-switch-register');
@@ -95,6 +101,7 @@ export class WelcomeComponent implements OnInit {
   }
   startpage() {
     this.router.navigate(['startpage']);
+    Constants.roll=true;
   }
   call() {
     this.loginService.login(this.username,this.pass);

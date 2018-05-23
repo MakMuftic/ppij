@@ -18,7 +18,7 @@ import {Sport} from "../../models/sport";
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
-export class CreateEventComponent implements OnInit {
+export class CreateEventComponent implements OnInit, OnChanges{
   venues:any[];
   sports:any[];
   venue:Venue;
@@ -35,6 +35,10 @@ export class CreateEventComponent implements OnInit {
               private loginService:LoginService,private fb: FormBuilder,private venueService:VenueService,
               private sportService:SportService,private imageService: ImageService,
               private eventService:EventService,private cd:ChangeDetectorRef) {
+  }
+
+  ngOnChanges() {
+
   }
 
   ngOnInit() {
@@ -55,8 +59,8 @@ export class CreateEventComponent implements OnInit {
     let event = new Event(this.name,this.description,this.venue,this.sport,this.image,this.date.toString())
     this.eventService.addEvent(event);
     Constants.type="";
-    this.boolPop = true;
-    this.boolChange.emit(this.boolPop);
+    Constants.pop=true;
+    this.cd.detectChanges();
   }
   onFileChange(event) {
     if(event.target.files.length > 0) {

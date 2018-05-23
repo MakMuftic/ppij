@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {NgForm} from '@angular/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   selectedSports:Sport[];
   constructor(private router:Router,private userService:UserService,
               private loginService:LoginService,private fb: FormBuilder,private sportService:SportService,
-              private imageService:ImageService) {
+              private imageService:ImageService,private cd:ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -66,8 +66,8 @@ export class ProfileComponent implements OnInit {
     this.user.image = this.image;
     this.userService.updateUser(this.user);
     Constants.type = "";
-    this.boolPop = true;
-    this.boolChange.emit(this.boolPop);
+    Constants.pop=true;
+    this.cd.detectChanges();
 
   }
 

@@ -6,4 +6,7 @@ export class Constants {
   public static user:User
   public static venues:any[];
   public static favorites:any[];
+  public static pop:boolean;
+  public static roll:boolean=true;
+  public static event:any;
 }

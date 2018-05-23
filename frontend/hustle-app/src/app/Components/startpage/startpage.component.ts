@@ -24,7 +24,6 @@ import { ImageService } from "../../services/imageService";
 export class StartpageComponent implements OnInit,OnChanges{
   loading = false;
   user:User;
-  pop:boolean = false;
 
 
 
@@ -44,16 +43,33 @@ export class StartpageComponent implements OnInit,OnChanges{
     this.userService.getUser(JSON.parse(localStorage['currentUser']).id).then(
       user => Constants.user = user
     );
+    Constants.pop=false;
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      Constants.roll = false;
+    },2000);
   }
   ngOnChanges() {
-    if (this.pop ) {
-      this.cd.detectChanges();
-    }
   }
-  openProfile() {
-      Constants.type="P";
+  openProfile(event) {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
     }
-  toEvents() {
+    Constants.event=event;
+    Constants.event.target.classList.add('is-active');
+    this.cd.detectChanges();
+    Constants.type="P";
+    }
+  toEvents(event) {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
+    }
+    Constants.event=event;
+    Constants.event.target.classList.add('is-active');
+    this.cd.detectChanges();
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="E";
 
@@ -62,7 +78,20 @@ export class StartpageComponent implements OnInit,OnChanges{
     }
 
   }
+  fade() {
+    Constants.pop=false;
+    this.cd.detectChanges();
+  }
+  getRoll() {return Constants.roll;}
   toVenues() {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
+    }
+    Constants.event=event;
+    Constants.event.target.classList.add('is-active');
+    this.cd.detectChanges();
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="V";
     } else {
@@ -71,9 +100,25 @@ export class StartpageComponent implements OnInit,OnChanges{
 
   }
   create() {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
+    }
+    Constants.event=event;
+    Constants.event.target.classList.add('is-active');
+    this.cd.detectChanges();
     Constants.type="C";
   }
   tofavorites() {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
+    }
+    Constants.event=event;
+    Constants.event.target.classList.add('is-active');
+    this.cd.detectChanges();
     if(localStorage.getItem("currentUser") !== null) {
       Constants.type="F";
     } else {
@@ -82,19 +127,28 @@ export class StartpageComponent implements OnInit,OnChanges{
 
   }
   logOut() {
+    if(Constants.event != undefined) {
+      if(Constants.event.target.classList.contains('is-active')) {
+        Constants.event.target.classList.remove('is-active');
+      }
+    }
     if(localStorage.getItem("currentUser") != null) {
       this.loginService.logout();
       this.router.navigate(['welcomepage']);
     } else {
       this.router.navigate(['welcomepage']);
     }
+    Constants.roll=false;
 
   }
   getType() {return Constants.type}
 
-  d
+
   localStorageItemName(id: string): string {
     return JSON.parse(localStorage.getItem(id)).username;
+  }
+  getpop() {
+    return Constants.pop;
   }
 
 }

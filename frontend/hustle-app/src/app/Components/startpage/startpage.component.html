@@ -4,28 +4,28 @@
     <div class="c-sidebar__username">{{localStorageItemName("currentUser")}}</div>
     <div class="c-sidebar__label">Events</div>
     <div class="c-sidebar__links">
-      <a  style="cursor: pointer;" class="c-sidebar__link is-active" (click)="toEvents()"><i class="material-icons c-sidebar__icon" >event_note</i> All events</a>
-      <a  style="cursor: pointer;" class="c-sidebar__link" (click)="create()"><i class="material-icons c-sidebar__icon">add</i> New event</a>
+      <a  style="cursor: pointer;" class="c-sidebar__link is" (click)="toEvents($event)"><i class="material-icons c-sidebar__icon" >event_note</i> All events</a>
+      <a  style="cursor: pointer;" class="c-sidebar__link" (click)="create($event)"><i class="material-icons c-sidebar__icon">add</i> New event</a>
     </div>
     <div class="c-sidebar__label">Locations</div>
     <div class="c-sidebar__links">
-      <a style="cursor: pointer;" class="c-sidebar__link" (click)="toVenues()"><i class="material-icons c-sidebar__icon" >location_on</i> Venues</a>
-      <a style="cursor: pointer;" class="c-sidebar__link" (click)="tofavorites()"><i class="material-icons c-sidebar__icon">star</i> Favorites</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="toVenues($event)"><i class="material-icons c-sidebar__icon" >location_on</i> Venues</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="tofavorites($event)"><i class="material-icons c-sidebar__icon">star</i> Favorites</a>
     </div>
     <div class="c-sidebar__label">Profile</div>
     <div class="c-sidebar__links">
-      <a style="cursor: pointer;" class="c-sidebar__link" (click)="openProfile()"><i class="material-icons c-sidebar__icon">settings</i> Settings</a>
+      <a style="cursor: pointer;" class="c-sidebar__link" (click)="openProfile($event)"><i class="material-icons c-sidebar__icon">settings</i> Settings</a>
       <a style="cursor: pointer;" class="c-sidebar__link" (click)="logOut()"><i class="material-icons c-sidebar__icon">lock</i> Log out</a>
     </div>
   </div>
   <div class="c-content">
-    <div class="c-popup js-popup" *ngIf="pop">
+    <div class="c-popup js-popup" *ngIf="getpop()" (click)="fade()">
       Information has been saved successfully.
     </div>
-    <div *ngIf="getType() == ''"> Ovo će se ispisat kada je ništa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat impedit ipsum laboriosam perferendis tempore.
-      Commodi dolorem in officiis perferendis quos suscipit, voluptate? Maiores, quae voluptatem. Eius et molestiae nam officia!</div>
+    <div class="o-preloader__spinner" *ngIf="getRoll()"></div>
+    <div *ngIf="getType() == ''"> </div>
     <div *ngIf="getType() == 'P'">
-      <app-profile [(boolPop)]="pop"></app-profile>
+      <app-profile></app-profile>
     </div>
     <div *ngIf="getType() == 'E'">
         <app-event-view></app-event-view>
@@ -37,7 +37,7 @@
       <app-favorite-view></app-favorite-view>
     </div>
     <div *ngIf="getType() == 'C'">
-      <app-create-event [(boolPop)]="pop"></app-create-event>
+      <app-create-event></app-create-event>
     </div>
   </div>
 </div>
