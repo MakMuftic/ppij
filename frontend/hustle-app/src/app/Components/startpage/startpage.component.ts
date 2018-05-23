@@ -46,7 +46,7 @@ export class StartpageComponent implements OnInit,OnChanges{
     Constants.pop=false;
     setTimeout(()=>{    //<<<---    using ()=> syntax
       Constants.roll = false;
-    },2000);
+    },500);
   }
   ngOnChanges() {
   }

@@ -24,7 +24,6 @@ export class EventViewComponent implements OnInit {
               private imageService:ImageService) { }
 
   ngOnInit() {
-    console.log(Constants.events);
   }
   getVenue(venueId:number) {
     this.venueService.getVenue(venueId)

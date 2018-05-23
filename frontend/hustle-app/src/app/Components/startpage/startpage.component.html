@@ -1,3 +1,6 @@
+<div class="o-preloader" *ngIf="getRoll()">
+  <div class="o-preloader__spinner"></div>
+</div>
 <div class="o-cover" style="background-image: url('/assets/images/court-vector.jpg');">
   <div class="c-sidebar">
     <div class="c-sidebar__user-photo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg')"></div>
@@ -22,7 +25,6 @@
     <div class="c-popup js-popup" *ngIf="getpop()" (click)="fade()">
       Information has been saved successfully.
     </div>
-    <div class="o-preloader__spinner" *ngIf="getRoll()"></div>
     <div *ngIf="getType() == ''"> </div>
     <div *ngIf="getType() == 'P'">
       <app-profile></app-profile>

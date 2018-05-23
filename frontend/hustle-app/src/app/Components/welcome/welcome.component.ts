@@ -31,7 +31,7 @@ export class WelcomeComponent implements OnInit {
     this.formAnimation();
     setTimeout(()=>{    //<<<---    using ()=> syntax
       Constants.roll = false;
-    },2000);
+    },500);
 
   }
   getRoll() {
